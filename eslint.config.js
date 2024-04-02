@@ -1,9 +1,10 @@
-// @ts-check
-const antfu = require('@antfu/eslint-config').default
+import antfu from '@antfu/eslint-config'
 
-module.exports = antfu({
+export default antfu({
   unocss: true,
+
+  // 自定义规则
   rules: {
-    curly: 'off',  
+    curly: 'off',
   },
 })
