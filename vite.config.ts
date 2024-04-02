@@ -32,10 +32,6 @@ export default defineConfig({
     Components({
       resolvers: [NaiveUiResolver()],
       dts: 'types/components.d.ts',
-      types: [{
-        from: 'vue-router',
-        names: ['RouterLink', 'RouterView'],
-      }],
     }),
 
     // vue 调试工具

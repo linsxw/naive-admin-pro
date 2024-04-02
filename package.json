@@ -10,7 +10,7 @@
     "url": "https://github.com/linsxw"
   },
   "scripts": {
-    "dev": "vite --port 7777 --open",
+    "dev": "vite --port 7777",
     "build": "vue-tsc && vite build",
     "preview": "vite preview",
     "lint": "eslint .",
@@ -30,6 +30,7 @@
     "@commitlint/config-conventional": "^19.1.0",
     "@types/node": "^20.12.2",
     "@unocss/eslint-config": "^0.59.0-beta.1",
+    "@vicons/ionicons5": "^0.12.0",
     "@vitejs/plugin-vue": "^5.0.4",
     "cz-customizable": "^7.0.0",
     "eslint": "^8.57.0",

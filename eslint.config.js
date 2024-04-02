@@ -5,6 +5,7 @@ export default antfu({
 
   // 自定义规则
   rules: {
-    curly: 'off',
+    'curly': 'off',
+    'no-console': 'off',
   },
 })

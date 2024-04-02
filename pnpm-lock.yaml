@@ -37,6 +37,9 @@ devDependencies:
   '@unocss/eslint-config':
     specifier: ^0.59.0-beta.1
     version: 0.59.0-beta.1(eslint@8.57.0)(typescript@5.4.3)
+  '@vicons/ionicons5':
+    specifier: ^0.12.0
+    version: 0.12.0
   '@vitejs/plugin-vue':
     specifier: ^5.0.4
     version: 5.0.4(vite@5.2.7)(vue@3.4.21)
@@ -1869,6 +1872,10 @@ packages:
       vite: 5.2.7(@types/node@20.12.2)
     transitivePeerDependencies:
       - rollup
+    dev: true
+
+  /@vicons/ionicons5@0.12.0:
+    resolution: {integrity: sha512-Iy1EUVRpX0WWxeu1VIReR1zsZLMc4fqpt223czR+Rpnrwu7pt46nbnC2ycO7ItI/uqDLJxnbcMC7FujKs9IfFA==}
     dev: true
 
   /@vitejs/plugin-vue@5.0.4(vite@5.2.7)(vue@3.4.21):
