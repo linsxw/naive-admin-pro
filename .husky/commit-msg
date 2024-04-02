@@ -1,0 +1,2 @@
+#!/bin/sh
+pnpm exec commitlint -x @commitlint/config-conventional -e $GIT_PARAMS
