@@ -16,6 +16,7 @@
   "scripts": {
     "dev": "vite --port 7777",
     "build": "vue-tsc && vite build",
+    "build:no-tsc": "vite build",
     "preview": "vite preview",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
