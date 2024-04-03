@@ -6,7 +6,8 @@ import AutoImport from 'unplugin-auto-import/vite'
 import Components from 'unplugin-vue-components/vite'
 import VueDevTools from 'vite-plugin-vue-devtools'
 import { NaiveUiResolver } from 'unplugin-vue-components/resolvers'
-
+import { viteMockServe } from 'vite-plugin-mock';
+import ViteSvgLoader from 'vite-svg-loader';
 // https://vitejs.dev/config/
 export default defineConfig({
   resolve: {
@@ -14,8 +15,8 @@ export default defineConfig({
       '@': resolve(__dirname, 'src'),
     },
   },
-  server:{
-    open:true
+  server: {
+    open: true
   },
   plugins: [
     vue(),
@@ -37,7 +38,17 @@ export default defineConfig({
       dts: 'types/components.d.ts',
     }),
 
+    //svg
+    ViteSvgLoader(),
+
+    //mock
+    viteMockServe({
+      mockPath: 'mock',
+      enable: true,
+    }),
+
     // vue 调试工具
     VueDevTools(),
+
   ],
 })
