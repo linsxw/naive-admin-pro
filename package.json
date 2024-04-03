@@ -9,6 +9,10 @@
     "email": "804636497@qq.com",
     "url": "https://github.com/linsxw"
   },
+  "engines": {
+    "node": ">=18.0.0",
+    "pnpm":">=8.0.0"
+  },
   "scripts": {
     "dev": "vite --port 7777",
     "build": "vue-tsc && vite build",
