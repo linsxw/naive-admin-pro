@@ -22,3 +22,8 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+
+# unplugin types
+types/auto-imports.d.ts
+types/components.d.ts
