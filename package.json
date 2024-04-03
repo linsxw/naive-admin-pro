@@ -30,6 +30,7 @@
     "@commitlint/config-conventional": "^19.1.0",
     "@types/node": "^20.12.2",
     "@unocss/eslint-config": "^0.59.0-beta.1",
+    "@vicons/antd": "^0.12.0",
     "@vicons/ionicons5": "^0.12.0",
     "@vitejs/plugin-vue": "^5.0.4",
     "cz-customizable": "^7.0.0",
