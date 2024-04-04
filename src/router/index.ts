@@ -12,10 +12,16 @@ const defaultRouterList: Array<RouteRecordRaw> = [
   {
     path: '/',
     component: Layout,
+    meta:{
+      title:'仪表盘'
+    },
     children: [
       {
         path: '/',
         name: 'Index',
+        meta:{
+          title:'工作台'
+        },
         component: () => import('@/views/index.vue'),
       },
     ],
