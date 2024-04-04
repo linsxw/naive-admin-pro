@@ -8,7 +8,7 @@ import VueDevTools from 'vite-plugin-vue-devtools'
 import { NaiveUiResolver } from 'unplugin-vue-components/resolvers'
 import { viteMockServe } from 'vite-plugin-mock';
 import ViteSvgLoader from 'vite-svg-loader';
-
+import progress from 'vite-plugin-progress'
 import { visualizer } from 'rollup-plugin-visualizer';
 
 // https://vitejs.dev/config/
@@ -54,6 +54,8 @@ export default defineConfig({
     // vue 调试工具
     VueDevTools(),
 
+    progress(),
+
     //依赖分析
     visualizer({
       open: false,
@@ -63,16 +65,16 @@ export default defineConfig({
   ],
 
   build: {
-    cssCodeSplit:true,
-    assetsInlineLimit:5000,
+    cssCodeSplit: true,
+    assetsInlineLimit: 5000,
     rollupOptions: {
       output: {
         manualChunks: (id) => {
           // 从 node_modules 中引入的模块会被打包到一个独立的文件中
           if (id.includes('/node_modules/')) {
             // 以 node_modules 作为分割点，只分割 node_modules 中的模块
-            const dirArray=id.toString().split('/node_modules/')
-            const difFile=dirArray[2].split('/')[0].toString()
+            const dirArray = id.toString().split('/node_modules/')
+            const difFile = dirArray[2].split('/')[0].toString()
             return `${difFile}/${difFile}`
           }
         }
