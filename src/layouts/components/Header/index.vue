@@ -1,7 +1,9 @@
 <script setup lang="ts">
-import { Home, Menu } from '@vicons/ionicons5'
+import { Menu } from '@vicons/ionicons5'
 import { FullscreenOutlined, GithubOutlined, SettingOutlined } from '@vicons/antd'
 import ProjectConfig from './projectConfig.vue'
+
+import { Breadcrumb } from '../Breadcrumb'
 
 defineProps({
   collapsed: Boolean,
@@ -24,42 +26,40 @@ const avatarOptions = [
 <template>
   <div class="layout-header">
     <div class="layout-header-left">
-      <!-- 菜单收起 -->
-      <n-button tertiary circle class="layout-header-trigger" @click="() => $emit('update:collapsed', !collapsed)">
-        <template #icon>
-          <n-icon><Menu /></n-icon>
-        </template>
-      </n-button>
-      <!-- 面包屑 -->
-      <n-breadcrumb>
-        <n-breadcrumb-item>
-          <n-icon :component="Home" size="16" /> 首页
-        </n-breadcrumb-item>
-        <n-breadcrumb-item>
-          xx
-        </n-breadcrumb-item>
-      </n-breadcrumb>
+      <n-flex :size="12" align="center">
+        <!-- 菜单收起 -->
+        <n-icon :size="22" class="layout-header-trigger" @click="() => $emit('update:collapsed', !collapsed)">
+          <Menu />
+        </n-icon>
+        <!-- 面包屑 -->
+        <Breadcrumb />
+      </n-flex>
     </div>
     <div class="layout-header-right">
-      <n-button tertiary circle class="layout-header-trigger">
+      <n-button quaternary class="layout-header-trigger">
         <template #icon>
-          <n-icon><FullscreenOutlined /></n-icon>
+          <n-icon>
+            <FullscreenOutlined />
+          </n-icon>
         </template>
       </n-button>
-      <n-button tag="a" tertiary circle class="layout-header-trigger" target="_blank" href="https://github.com/linsxw/naive-admin-pro">
+      <n-button tag="a" quaternary class="layout-header-trigger" target="_blank"
+        href="https://github.com/linsxw/naive-admin-pro">
         <template #icon>
-          <n-icon><GithubOutlined /></n-icon>
+          <n-icon>
+            <GithubOutlined />
+          </n-icon>
         </template>
       </n-button>
-      <n-button tertiary circle class="layout-header-trigger" @click="activeProjectConfig = true">
+      <n-button quaternary class="layout-header-trigger" @click="activeProjectConfig = true">
         <template #icon>
-          <n-icon><SettingOutlined /></n-icon>
+          <n-icon>
+            <SettingOutlined />
+          </n-icon>
         </template>
       </n-button>
-      <n-divider vertical class="layout-header-trigger" />
-
       <n-dropdown :options="avatarOptions">
-        <div class="flex cursor-pointer items-center space-x-1">
+        <div class="flex cursor-pointer items-center space-x-1 pl-4">
           <n-avatar round :size="35" src="https://pic.imgdb.cn/item/634f902116f2c2beb11a3cc7.jpg" />
           <span>小伟同学.</span>
         </div>
@@ -80,6 +80,7 @@ const avatarOptions = [
   transition: all 0.2s ease-in-out;
   width: 100%;
   z-index: 11;
+
   &-left {
     display: flex;
     align-items: center;
@@ -93,7 +94,6 @@ const avatarOptions = [
   }
 
   .layout-header-trigger {
-    margin: 0px 8px 0;
     cursor: pointer;
     transition: all .2s ease-in-out;
   }
