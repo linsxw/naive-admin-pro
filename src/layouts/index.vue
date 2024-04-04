@@ -13,7 +13,7 @@ const { collapsed } = storeToRefs(layoutsStore)
 
 <template>
   <n-layout class="layout" position="absolute" has-sider>
-    <n-layout-sider show-trigger="bar" position="absolute" :collapsed="collapsed" collapse-mode="width"
+    <n-layout-sider position="absolute" :collapsed="collapsed" collapse-mode="width"
       :collapsed-width="64" :width="240" :native-scrollbar="false" inverted class="layout-sider"
       @collapse="collapsed = true" @expand="collapsed = false">
       <Logo :collapsed="collapsed" />
