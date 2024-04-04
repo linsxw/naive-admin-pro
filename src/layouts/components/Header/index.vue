@@ -36,7 +36,8 @@ const avatarOptions = [
       </n-flex>
     </div>
     <div class="layout-header-right">
-      <n-button quaternary class="layout-header-trigger">
+      <n-flex :size="4">
+        <n-button quaternary class="layout-header-trigger">
         <template #icon>
           <n-icon>
             <FullscreenOutlined />
@@ -64,6 +65,7 @@ const avatarOptions = [
           <span>小伟同学.</span>
         </div>
       </n-dropdown>
+      </n-flex>
     </div>
 
     <ProjectConfig v-model="activeProjectConfig" />
