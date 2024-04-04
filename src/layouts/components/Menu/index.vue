@@ -27,7 +27,7 @@ const menuOptions: MenuOption[] = [
       },
       {
         label: '工作台',
-        key: 'rat',
+        key: 'rat2',
         icon: renderIcon(PersonIcon),
       },
     ],
@@ -39,17 +39,17 @@ const menuOptions: MenuOption[] = [
     children: [
       {
         label: '用户管理',
-        key: 'dance',
+        key: 'user',
         icon: renderIcon(PersonIcon),
       },
       {
         label: '角色管理',
-        key: 'dance',
+        key: 'roles',
         icon: renderIcon(PersonIcon),
       },
       {
         label: '菜单管理',
-        key: 'dance',
+        key: 'menu',
         icon: renderIcon(PersonIcon),
       },
     ],
@@ -68,6 +68,7 @@ function handleUpdateExpandedKeys(keys: string[]) {
     :options="menuOptions"
     :collapsed-width="64"
     :indent="18"
+    :show-trigger="false"
     :collapsed-icon-size="22"
     :default-expanded-keys="defaultExpandedKeys"
     @update:expanded-keys="handleUpdateExpandedKeys"

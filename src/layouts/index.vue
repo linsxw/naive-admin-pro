@@ -3,25 +3,19 @@ import { Logo } from './components/Logo'
 import { AsideMenu } from './components/Menu'
 import { PageHeader } from './components/Header'
 import { MainView } from './components/Main'
+import { useLayoutsStore } from '@/hooks/layouts'
 
-const collapsed = ref(false)
+const layoutsStore = useLayoutsStore()
+
+const { collapsed } = storeToRefs(layoutsStore)
+
 </script>
 
 <template>
   <n-layout class="layout" position="absolute" has-sider>
-    <n-layout-sider
-      show-trigger="bar"
-      position="absolute"
-      :collapsed="collapsed"
-      collapse-mode="width"
-      :collapsed-width="64"
-      :width="240"
-      :native-scrollbar="false"
-      inverted
-      class="layout-sider"
-      @collapse="collapsed = true"
-      @expand="collapsed = false"
-    >
+    <n-layout-sider show-trigger="bar" position="absolute" :collapsed="collapsed" collapse-mode="width"
+      :collapsed-width="64" :width="240" :native-scrollbar="false" inverted class="layout-sider"
+      @collapse="collapsed = true" @expand="collapsed = false">
       <Logo :collapsed="collapsed" />
       <AsideMenu :collapsed="collapsed" />
     </n-layout-sider>
@@ -31,16 +25,10 @@ const collapsed = ref(false)
         <PageHeader v-model:collapsed="collapsed" />
       </n-layout-header>
 
-      <n-layout-content
-        class="layout-content layout-default-background"
-      >
-        <div
-          class="layout-content-main"
-        >
+      <n-layout-content class="layout-content layout-default-background">
+        <div class="layout-content-main">
           <div>tagview</div>
-          <div
-            class="main-view"
-          >
+          <div class="main-view">
             <MainView />
           </div>
         </div>
