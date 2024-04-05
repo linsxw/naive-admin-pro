@@ -6,10 +6,10 @@ import AutoImport from 'unplugin-auto-import/vite'
 import Components from 'unplugin-vue-components/vite'
 import VueDevTools from 'vite-plugin-vue-devtools'
 import { NaiveUiResolver } from 'unplugin-vue-components/resolvers'
-import { viteMockServe } from 'vite-plugin-mock';
-import ViteSvgLoader from 'vite-svg-loader';
+import { viteMockServe } from 'vite-plugin-mock'
+import ViteSvgLoader from 'vite-svg-loader'
 import progress from 'vite-plugin-progress'
-import { visualizer } from 'rollup-plugin-visualizer';
+import { visualizer } from 'rollup-plugin-visualizer'
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -19,7 +19,7 @@ export default defineConfig({
     },
   },
   server: {
-    open: true
+    open: true,
   },
   plugins: [
     vue(),
@@ -31,7 +31,7 @@ export default defineConfig({
       imports: [
         'vue',
         'vue-router',
-        'pinia'
+        'pinia',
       ],
       dts: 'types/auto-imports.d.ts',
       dirs: ['src/composables'],
@@ -42,10 +42,10 @@ export default defineConfig({
       dts: 'types/components.d.ts',
     }),
 
-    //svg
+    // svg
     ViteSvgLoader(),
 
-    //mock
+    // mock
     viteMockServe({
       mockPath: 'mock',
       enable: true,
@@ -56,12 +56,12 @@ export default defineConfig({
 
     progress(),
 
-    //依赖分析
+    // 依赖分析
     visualizer({
       open: false,
       gzipSize: true,
       brotliSize: true,
-    })
+    }),
   ],
 
   build: {
@@ -77,8 +77,8 @@ export default defineConfig({
             const difFile = dirArray[2].split('/')[0].toString()
             return `${difFile}/${difFile}`
           }
-        }
+        },
       },
-    }
-  }
+    },
+  },
 })

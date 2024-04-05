@@ -1,4 +1,4 @@
-import Layout from '@/layouts/index.vue';
+import Layout from '@/layouts/index.vue'
 
 export default [
   {
@@ -11,7 +11,7 @@ export default [
         zh_CN: '仪表盘',
         en_US: 'Dashboard',
       },
-      icon:'',
+      icon: '',
       orderNo: 0,
     },
     children: [
@@ -25,7 +25,7 @@ export default [
             en_US: 'Overview',
           },
         },
-      }
+      },
     ],
   },
-];
+]

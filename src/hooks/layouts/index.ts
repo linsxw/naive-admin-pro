@@ -1,21 +1,21 @@
 import { acceptHMRUpdate, defineStore } from 'pinia'
 
 const useLayoutsStore = defineStore('layouts', () => {
-    const collapsed = ref(false)
+  const collapsed = ref(false)
 
-    return {
-        collapsed
-    }
+  return {
+    collapsed,
+  }
 }, {
-    persist: {
-        key: 'layouts-store'
-    }
+  persist: {
+    key: 'layouts-store',
+  },
 })
 
 if (import.meta.hot) {
-    import.meta.hot.accept(acceptHMRUpdate(useLayoutsStore, import.meta.hot))
+  import.meta.hot.accept(acceptHMRUpdate(useLayoutsStore, import.meta.hot))
 }
 
 export {
-    useLayoutsStore
+  useLayoutsStore,
 }

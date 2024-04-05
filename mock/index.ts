@@ -1,5 +1,5 @@
-import Mock from 'mockjs';
-import { MockMethod } from 'vite-plugin-mock';
+import Mock from 'mockjs'
+import type { MockMethod } from 'vite-plugin-mock'
 
 export default [
   {
@@ -11,21 +11,21 @@ export default [
         ...Mock.mock({
           'list|1-100': [
             {
-              index: /S20201228115950[0-9][0-9][0-9]/,
-              pdName: 'Macbook',
-              pdNum: 'p_tmp_60a637cd0d',
+              'index': /S20201228115950[0-9][0-9][0-9]/,
+              'pdName': 'Macbook',
+              'pdNum': 'p_tmp_60a637cd0d',
               'purchaseNum|1-100': 100,
-              adminName: '财务部111',
-              updateTime: '2020-05-20@date("HH:mm:ss")',
-              pdType: '电子产品',
+              'adminName': '财务部111',
+              'updateTime': '2020-05-20@date("HH:mm:ss")',
+              'pdType': '电子产品',
             },
             {
-              index: /S20201228115950[0-9][0-9][0-9]/,
-              pdName: 'Macbook',
-              pdNum: 'p_tmp_60a637cd0d',
+              'index': /S20201228115950[0-9][0-9][0-9]/,
+              'pdName': 'Macbook',
+              'pdNum': 'p_tmp_60a637cd0d',
               'purchaseNum|1-100': 100,
-              adminName: '财务部',
-              updateTime: '2020-05-20@date("HH:mm:ss")',
+              'adminName': '财务部',
+              'updateTime': '2020-05-20@date("HH:mm:ss")',
             },
           ],
         }),
@@ -43,13 +43,13 @@ export default [
             {
               'index|+1': 1,
               'status|1': '@natural(0, 4)',
-              no: 'BH00@natural(01, 100)',
-              name: '@city()办公用品采购项目',
+              'no': 'BH00@natural(01, 100)',
+              'name': '@city()办公用品采购项目',
               'paymentType|1': '@natural(0, 1)',
               'contractType|1': '@natural(0, 2)',
-              updateTime: '2020-05-30 @date("HH:mm:ss")',
-              amount: '@natural(10, 500),000,000',
-              adminName: '@cname()',
+              'updateTime': '2020-05-30 @date("HH:mm:ss")',
+              'amount': '@natural(10, 500),000,000',
+              'adminName': '@cname()',
             },
           ],
         }),
@@ -84,7 +84,7 @@ export default [
           'list|48-50': [
             {
               'index|+1': 1,
-              isSetup: '@boolean',
+              'isSetup': '@boolean',
               'type|1': '@natural(1, 5)',
               'banner|1': [
                 'https://tdesign.gtimg.com/starter/cloud-db.jpg',
@@ -117,8 +117,8 @@ export default [
           'list|1-50': [
             {
               'index|+1': 1,
-              adminPhone: '+86 13587609955',
-              updateTime: '2020-05-30 @date("HH:mm:ss")',
+              'adminPhone': '+86 13587609955',
+              'updateTime': '2020-05-30 @date("HH:mm:ss")',
               'adminName|1': ['顾娟	', '常刚', '郑洋'],
               'name|1': [
                 '沧州市办公用品采购项目',
@@ -365,4 +365,4 @@ export default [
       },
     },
   },
-] as MockMethod[];
+] as MockMethod[]

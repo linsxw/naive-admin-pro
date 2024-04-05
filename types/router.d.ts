@@ -1,18 +1,18 @@
-import "vue-router";
+import 'vue-router'
 
-export {};
+export {}
 
-declare module "vue-router" {
+declare module 'vue-router' {
   interface RouteMeta {
-    title?: string | Record<string, string>;
-    icon?: string;
-    expanded?: boolean;
-    orderNo?: number;
-    hidden?: boolean;
-    hiddenBreadcrumb?: boolean;
-    single?: boolean;
-    keepAlive?: boolean;
-    frameSrc?: string;
-    frameBlank?: boolean;
+    title?: string | Record<string, string>
+    icon?: string
+    expanded?: boolean
+    orderNo?: number
+    hidden?: boolean
+    hiddenBreadcrumb?: boolean
+    single?: boolean
+    keepAlive?: boolean
+    frameSrc?: string
+    frameBlank?: boolean
   }
 }

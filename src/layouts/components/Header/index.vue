@@ -1,14 +1,14 @@
 <script setup lang="ts">
 import { Menu } from '@vicons/ionicons5'
 import { FullscreenOutlined, GithubOutlined, SettingOutlined } from '@vicons/antd'
-import ProjectConfig from './projectConfig.vue'
-
 import { Breadcrumb } from '../Breadcrumb'
+import ProjectConfig from './projectConfig.vue'
 
 defineProps({
   collapsed: Boolean,
 })
 
+const emits = defineEmits(['update:collapsed'])
 const activeProjectConfig = ref(false)
 
 const avatarOptions = [
@@ -28,7 +28,7 @@ const avatarOptions = [
     <div class="layout-header-left">
       <n-flex :size="12" align="center">
         <!-- 菜单收起 -->
-        <n-icon :size="22" class="layout-header-trigger" @click="() => $emit('update:collapsed', !collapsed)">
+        <n-icon :size="22" class="layout-header-trigger" @click="() => emits('update:collapsed', !collapsed)">
           <Menu />
         </n-icon>
         <!-- 面包屑 -->
@@ -38,33 +38,35 @@ const avatarOptions = [
     <div class="layout-header-right">
       <n-flex :size="4">
         <n-button quaternary class="layout-header-trigger">
-        <template #icon>
-          <n-icon>
-            <FullscreenOutlined />
-          </n-icon>
-        </template>
-      </n-button>
-      <n-button tag="a" quaternary class="layout-header-trigger" target="_blank"
-        href="https://github.com/linsxw/naive-admin-pro">
-        <template #icon>
-          <n-icon>
-            <GithubOutlined />
-          </n-icon>
-        </template>
-      </n-button>
-      <n-button quaternary class="layout-header-trigger" @click="activeProjectConfig = true">
-        <template #icon>
-          <n-icon>
-            <SettingOutlined />
-          </n-icon>
-        </template>
-      </n-button>
-      <n-dropdown :options="avatarOptions">
-        <div class="flex cursor-pointer items-center space-x-1 pl-4">
-          <n-avatar round :size="35" src="https://pic.imgdb.cn/item/634f902116f2c2beb11a3cc7.jpg" />
-          <span>小伟同学.</span>
-        </div>
-      </n-dropdown>
+          <template #icon>
+            <n-icon>
+              <FullscreenOutlined />
+            </n-icon>
+          </template>
+        </n-button>
+        <n-button
+          tag="a" quaternary class="layout-header-trigger" target="_blank"
+          href="https://github.com/linsxw/naive-admin-pro"
+        >
+          <template #icon>
+            <n-icon>
+              <GithubOutlined />
+            </n-icon>
+          </template>
+        </n-button>
+        <n-button quaternary class="layout-header-trigger" @click="activeProjectConfig = true">
+          <template #icon>
+            <n-icon>
+              <SettingOutlined />
+            </n-icon>
+          </template>
+        </n-button>
+        <n-dropdown :options="avatarOptions">
+          <div class="flex cursor-pointer items-center pl-4 space-x-1">
+            <n-avatar round :size="35" src="https://pic.imgdb.cn/item/634f902116f2c2beb11a3cc7.jpg" />
+            <span>小伟同学.</span>
+          </div>
+        </n-dropdown>
       </n-flex>
     </div>
 

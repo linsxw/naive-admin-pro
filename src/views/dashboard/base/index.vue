@@ -1,1 +1,3 @@
-<template>base</template>
+<template>
+  base
+</template>
