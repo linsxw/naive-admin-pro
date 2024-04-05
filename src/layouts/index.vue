@@ -3,19 +3,21 @@ import { Logo } from './components/Logo'
 import { AsideMenu } from './components/Menu'
 import { PageHeader } from './components/Header'
 import { MainView } from './components/Main'
+import { TabView } from './components/TabView'
 import { useLayoutsStore } from '@/hooks/layouts'
 
 const layoutsStore = useLayoutsStore()
 
 const { collapsed } = storeToRefs(layoutsStore)
-
 </script>
 
 <template>
   <n-layout class="layout" position="absolute" has-sider>
-    <n-layout-sider position="absolute" :collapsed="collapsed" collapse-mode="width"
+    <n-layout-sider
+      position="absolute" :collapsed="collapsed" collapse-mode="width"
       :collapsed-width="64" :width="240" :native-scrollbar="false" inverted class="layout-sider"
-      @collapse="collapsed = true" @expand="collapsed = false">
+      @collapse="collapsed = true" @expand="collapsed = false"
+    >
       <Logo :collapsed="collapsed" />
       <AsideMenu :collapsed="collapsed" />
     </n-layout-sider>
@@ -27,7 +29,7 @@ const { collapsed } = storeToRefs(layoutsStore)
 
       <n-layout-content class="layout-content layout-default-background">
         <div class="layout-content-main">
-          <div>tagview</div>
+          <TabView />
           <div class="main-view">
             <MainView />
           </div>
@@ -70,7 +72,6 @@ const { collapsed } = storeToRefs(layoutsStore)
 }
 
 .layout-content-main {
-  margin: 0 10px 10px;
   position: relative;
   padding-top: 64px;
 }
