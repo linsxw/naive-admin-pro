@@ -1,0 +1,23 @@
+/** 自定义 滚动条 样式 */
+*::-webkit-scrollbar {
+  height: 10px;
+  width: 8px;
+  background: transparent
+}
+
+*::-webkit-scrollbar:hover {
+  background: rgba(128,128,128,.5)
+}
+
+*::-webkit-scrollbar-thumb {
+  background: #d3d7da;
+  -webkit-border-radius: 6px
+}
+
+*::-webkit-scrollbar-thumb:hover {
+  background: rgba(0,0,0,.4)
+}
+
+*::-webkit-scrollbar-corner {
+  background: transparent;
+}
