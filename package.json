@@ -24,6 +24,7 @@
   },
   "dependencies": {
     "@unocss/reset": "^0.59.0-beta.1",
+    "alova": "^2.18.2",
     "naive-ui": "^2.38.1",
     "pinia": "^2.1.7",
     "pinia-plugin-persistedstate": "^3.2.1",
