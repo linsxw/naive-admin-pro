@@ -44,7 +44,7 @@ watch(
 </script>
 
 <template>
-  <div class="tab-view">
+  <div class="tab-view tab-view-fixed">
     <div class="tab-view-left">
       <n-icon size="18">
         <LeftOutlined />
@@ -72,12 +72,21 @@ watch(
 
 <style scoped lang="scss">
 .tab-view {
-  padding: 5px;
+  width: calc(100%);
   display: flex;
   justify-content: space-between;
   align-items: center;
   background-color: #ffffff;
   box-shadow: 0 1px 4px rgb(0 21 41 / 8%);
+  height: 40px;
+
+  &-fixed {
+    position: fixed;
+    top: 64px;
+    z-index: 2000;
+    margin: 0;
+  }
+
   &-left {
     display: flex;
     align-content: center;

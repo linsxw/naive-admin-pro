@@ -30,7 +30,7 @@ const { collapsed } = storeToRefs(layoutsStore)
       <n-layout-content class="layout-content layout-default-background">
         <div class="layout-content-main">
           <TabView />
-          <div class="main-view">
+          <div class="main-view main-view-fix">
             <MainView />
           </div>
         </div>
@@ -81,6 +81,6 @@ const { collapsed } = storeToRefs(layoutsStore)
 }
 
 .main-view-fix {
-  padding-top: 44px;
+  padding-top: 40px;
 }
 </style>
