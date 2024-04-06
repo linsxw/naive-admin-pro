@@ -83,8 +83,8 @@ watch(
   &-fixed {
     position: fixed;
     top: 64px;
-    z-index: 2000;
     margin: 0;
+    z-index: 10;
   }
 
   &-left {

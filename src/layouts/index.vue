@@ -4,18 +4,22 @@ import { AsideMenu } from './components/Menu'
 import { PageHeader } from './components/Header'
 import { MainView } from './components/Main'
 import { TabView } from './components/TabView'
-import { useLayoutsStore } from '@/hooks/layouts'
+import { useLayoutStoreRefs } from '@/store/modules/layout.ts'
 
-const layoutsStore = useLayoutsStore()
-
-const { collapsed } = storeToRefs(layoutsStore)
+const { collapsed, sidebarTheme, headerTheme } = useLayoutStoreRefs()
 </script>
 
 <template>
   <n-layout class="layout" position="absolute" has-sider>
     <n-layout-sider
-      position="absolute" :collapsed="collapsed" collapse-mode="width"
-      :collapsed-width="64" :width="240" :native-scrollbar="false" inverted class="layout-sider"
+      position="absolute"
+      :collapsed="collapsed"
+      collapse-mode="width"
+      :collapsed-width="64"
+      :width="240"
+      :native-scrollbar="false"
+      :inverted="sidebarTheme === 'dark'"
+      class="layout-sider"
       @collapse="collapsed = true" @expand="collapsed = false"
     >
       <Logo :collapsed="collapsed" />
@@ -23,7 +27,7 @@ const { collapsed } = storeToRefs(layoutsStore)
     </n-layout-sider>
 
     <n-layout>
-      <n-layout-header position="absolute">
+      <n-layout-header position="absolute" :inverted="headerTheme === 'dark'">
         <PageHeader v-model:collapsed="collapsed" />
       </n-layout-header>
 

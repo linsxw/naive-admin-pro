@@ -5,10 +5,12 @@ import {
   BookOutline as BookIcon,
   PersonOutline as PersonIcon,
 } from '@vicons/ionicons5'
+import { useLayoutStoreRefs } from '@/store/modules/layout.ts'
 
 defineProps<{
   collapsed: boolean
 }>()
+const { sidebarTheme } = useLayoutStoreRefs()
 
 function renderIcon(icon: Component) {
   return () => h(NIcon, null, { default: () => h(icon) })
@@ -64,7 +66,7 @@ function handleUpdateExpandedKeys(keys: string[]) {
 <template>
   <n-menu
     :collapsed="collapsed"
-    inverted
+    :inverted="sidebarTheme === 'dark'"
     :options="menuOptions"
     :collapsed-width="64"
     :indent="18"
