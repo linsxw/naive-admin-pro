@@ -5,7 +5,7 @@ export const ASYNC_ROUTE_STORE = 'app-async-route'
 
 export interface IAsyncRouteState {
   /** 菜单 */
-  menus: RouteRecordRaw[]
+  menus: any[]
   /** 路由 */
   routers: any[]
   /** 已添加的路由 */
@@ -31,6 +31,26 @@ export const useAsyncRouteStore = defineStore(ASYNC_ROUTE_STORE, {
     },
   },
   actions: {
+
+    setDynamicRouteAdded(added: boolean) {
+      this.isDynamicRouteAdded = added
+    },
+    /** 设置动态路由 */
+    setRouters(routers: RouteRecordRaw[]) {
+      this.routersAdded = routers
+      this.routers = routers
+    },
+    /** 设置菜单 */
+    setMenus(menus: any[]) {
+      this.menus = menus
+    },
+    /** 设置需要缓存的组件 */
+    setKeepAliveComponents(componentNames: string[]) {
+      this.keepAliveComponents = componentNames
+    },
+    generateRoutes() {
+
+    },
 
   },
 })
