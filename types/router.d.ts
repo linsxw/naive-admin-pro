@@ -4,15 +4,15 @@ export {}
 
 declare module 'vue-router' {
   interface RouteMeta {
+    /** 标题 */
     title?: string
+    /** 图标 */
     icon?: string
-    expanded?: boolean
+    /** 排序 */
     orderNo?: number
+    /** 是否隐藏 */
     hidden?: boolean
-    hiddenBreadcrumb?: boolean
-    single?: boolean
+    /** 是否缓存 */
     keepAlive?: boolean
-    frameSrc?: string
-    frameBlank?: boolean
   }
 }
