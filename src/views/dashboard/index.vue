@@ -1,3 +1,5 @@
 <template>
-  base
+  <div>
+    首页
+  </div>
 </template>

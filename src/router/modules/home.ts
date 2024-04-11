@@ -5,7 +5,7 @@ const routes: RouteRecordRaw[] = [
   {
     path: '/dashboard',
     component: Layout,
-    redirect: '/dashboard/base',
+    redirect: '/dashboard/index',
     name: 'dashboard',
     meta: {
       title: '仪表盘',
@@ -14,11 +14,11 @@ const routes: RouteRecordRaw[] = [
     },
     children: [
       {
-        path: 'base',
+        path: 'index',
         name: 'DashboardBase',
         component: () => import('@/views/dashboard/index.vue'),
         meta: {
-          title: '概览仪表盘',
+          title: '主控台',
         },
       },
     ],

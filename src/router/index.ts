@@ -1,7 +1,6 @@
 import type { App } from 'vue'
 import type { RouteRecordRaw } from 'vue-router'
 import { createRouter, createWebHistory } from 'vue-router'
-import Layout from '@/layouts/index.vue'
 
 const fixedModules = import.meta.glob('./modules/**/*.ts', { eager: true })
 
@@ -9,20 +8,7 @@ const fixedModules = import.meta.glob('./modules/**/*.ts', { eager: true })
 const defaultRouterList: Array<RouteRecordRaw> = [
   {
     path: '/',
-    component: Layout,
-    meta: {
-      title: '仪表盘',
-    },
-    children: [
-      {
-        path: '/',
-        name: 'Index',
-        meta: {
-          title: '工作台',
-        },
-        component: () => import('@/views/index.vue'),
-      },
-    ],
+    redirect: '/dashboard',
   },
 ]
 
@@ -34,6 +20,7 @@ export const allRoutes = [...fixedRouterList, ...defaultRouterList]
 export function mapModuleRouterList(modules: Record<string, unknown>): Array<RouteRecordRaw> {
   const routerList: Array<RouteRecordRaw> = []
   Object.keys(modules).forEach((key) => {
+    // eslint-disable-next-line ts/ban-ts-comment
     // @ts-expect-error
     const mod = modules[key].default || {}
     const modList = Array.isArray(mod) ? [...mod] : [mod]
