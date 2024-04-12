@@ -1,14 +1,22 @@
 import type { App } from 'vue'
 import type { RouteRecordRaw } from 'vue-router'
-import { createRouter, createWebHistory } from 'vue-router'
+import { createRouter, createWebHashHistory } from 'vue-router'
 
 const fixedModules = import.meta.glob('./modules/**/*.ts', { eager: true })
 
 // 其他固定路由
 const defaultRouterList: Array<RouteRecordRaw> = [
+  // 根路由
   {
     path: '/',
     redirect: '/dashboard',
+  },
+  // 登录
+  {
+    path: '/login',
+    name: 'Login',
+    component: () => import('@/views/login/index.vue'),
+    meta: { title: '登录' },
   },
 ]
 
@@ -33,7 +41,7 @@ export function mapModuleRouterList(modules: Record<string, unknown>): Array<Rou
  * 创建路由对象
  */
 export const router = createRouter({
-  history: createWebHistory('/'),
+  history: createWebHashHistory('/'),
   routes: allRoutes,
   scrollBehavior() {
     return {
