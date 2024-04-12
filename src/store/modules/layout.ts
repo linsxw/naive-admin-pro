@@ -38,7 +38,7 @@ const useLayoutStore = defineStore(LAYOUT_STORE, {
       isMobile: false,
       pageAnimate: true,
       pageAnimateType: 'fade',
-      sidebarTheme: 'light',
+      sidebarTheme: 'dark',
     }
   },
   persist: true,

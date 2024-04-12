@@ -63,7 +63,7 @@ function handleSubmit(e: MouseEvent) {
       <div class="h-full flex flex-1 flex-col">
         <n-carousel>
           <div class="h-full flex flex-col items-center justify-center pb-5 md:pb-0" style="background-color: #42b8f1">
-            <img class="h-[400px] w-[400px]" src="@/assets/image/banner.png" alt="banner">
+            <img class="h-[400px] w-[500px]" src="@/assets/image/banner.png" alt="banner">
             <div class="mb-4 pt-[50px] text-[26px] text-white font-bold">
               极致的用户体验
             </div>

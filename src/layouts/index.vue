@@ -16,11 +16,12 @@ const { collapsed, sidebarTheme, headerTheme } = useLayoutStoreRefs()
       :collapsed="collapsed"
       collapse-mode="width"
       :collapsed-width="64"
-      :width="240"
+      :width="270"
       :native-scrollbar="false"
       :inverted="sidebarTheme === 'dark'"
       class="layout-sider"
-      @collapse="collapsed = true" @expand="collapsed = false"
+      @collapse="collapsed = true"
+      @expand="collapsed = false"
     >
       <Logo :collapsed="collapsed" />
       <AsideMenu :collapsed="collapsed" />
