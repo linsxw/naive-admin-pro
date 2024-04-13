@@ -3,6 +3,10 @@ import { CloseOutlined, LeftOutlined, RightOutlined } from '@vicons/antd'
 import type { ITabViewStore, RouteItem } from '@/store/modules/tabView.ts'
 import { TAB_VIEW_STORE, useTabViewStore } from '@/store/modules/tabView.ts'
 
+defineProps({
+  collapsed: Boolean,
+})
+
 const route = useRoute()
 const tabViewStore = useTabViewStore()
 const activeKey = ref<string>(route.fullPath)
@@ -44,7 +48,7 @@ watch(
 </script>
 
 <template>
-  <div class="tab-view tab-view-fixed">
+  <div class="tab-view tab-view-fixed" :style="{ width: `calc(100% - ${collapsed ? '64px' : '270px'})` }">
     <div class="tab-view-left">
       <n-icon size="18">
         <LeftOutlined />
@@ -72,14 +76,13 @@ watch(
 
 <style scoped lang="scss">
 .tab-view {
-  width: calc(100%);
   display: flex;
   justify-content: space-between;
   align-items: center;
   background-color: #ffffff;
   box-shadow: 0 1px 4px rgb(0 21 41 / 8%);
   height: 40px;
-
+  transition: width 0s;
   &-fixed {
     position: fixed;
     top: 64px;

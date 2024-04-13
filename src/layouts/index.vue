@@ -85,7 +85,7 @@ onMounted(() => {
 
       <n-layout-content class="layout-content layout-default-background">
         <div class="layout-content-main">
-          <TabView />
+          <TabView :collapsed="collapsed" />
           <div class="main-view main-view-fix">
             <MainView />
           </div>
