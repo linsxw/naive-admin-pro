@@ -41,6 +41,16 @@ const useLayoutStore = defineStore(LAYOUT_STORE, {
       sidebarTheme: 'dark',
     }
   },
+  getters: {
+    getIsMobile(): boolean {
+      return this.isMobile
+    },
+  },
+  actions: {
+    setIsMobile(isMobile: boolean) {
+      this.isMobile = isMobile
+    },
+  },
   persist: true,
 })
 

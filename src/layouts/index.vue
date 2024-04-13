@@ -4,14 +4,45 @@ import { AsideMenu } from './components/Menu'
 import { PageHeader } from './components/Header'
 import { MainView } from './components/Main'
 import { TabView } from './components/TabView'
-import { useLayoutStoreRefs } from '@/store/modules/layout.ts'
+import { useLayoutStore, useLayoutStoreRefs } from '@/store/modules/layout.ts'
 
 const { collapsed, sidebarTheme, headerTheme } = useLayoutStoreRefs()
+const layoutStore = useLayoutStore()
+
+/** 是否是移动端 */
+const isMobile = computed<boolean>({
+  get: () => layoutStore.getIsMobile,
+  set: val => layoutStore.setIsMobile(val),
+})
+
+/** 是否显示手机端菜单侧边栏 */
+const showSideDrawer = computed({
+  get: () => isMobile.value && collapsed.value,
+  set: (val: boolean) => (collapsed.value = val),
+})
+
+/** 判断是否触发移动端模式 */
+function checkMobileMode() {
+  isMobile.value = document.body.clientWidth <= 800
+  collapsed.value = false
+}
+
+function watchWidth() {
+  const Width = document.body.clientWidth
+  collapsed.value = Width <= 950
+  checkMobileMode()
+}
+
+onMounted(() => {
+  checkMobileMode()
+  window.addEventListener('resize', watchWidth)
+})
 </script>
 
 <template>
   <n-layout class="layout" position="absolute" has-sider>
     <n-layout-sider
+      v-if="!isMobile"
       position="absolute"
       :collapsed="collapsed"
       collapse-mode="width"
@@ -26,6 +57,26 @@ const { collapsed, sidebarTheme, headerTheme } = useLayoutStoreRefs()
       <Logo :collapsed="collapsed" />
       <AsideMenu :collapsed="collapsed" />
     </n-layout-sider>
+
+    <!-- 手机端菜单 -->
+    <n-drawer
+      v-model:show="showSideDrawer"
+      :width="200"
+      placement="left"
+      class="layout-side-drawer"
+    >
+      <n-layout-sider
+        position="absolute"
+        :collapsed="false"
+        :width="200"
+        :native-scrollbar="false"
+        :inverted="sidebarTheme === 'dark'"
+        class="layout-sider"
+      >
+        <Logo :collapsed="collapsed" />
+        <AsideMenu :collapsed="!collapsed" />
+      </n-layout-sider>
+    </n-drawer>
 
     <n-layout>
       <n-layout-header position="absolute" :inverted="headerTheme === 'dark'">
