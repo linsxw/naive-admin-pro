@@ -6,7 +6,7 @@ import '@/assets/scss/index.scss'
 import { setupStore } from './store'
 import { setupRouter } from './router'
 
-async function bootstrap() {
+function bootstrap() {
   const app = createApp(App)
 
   // 配置store
