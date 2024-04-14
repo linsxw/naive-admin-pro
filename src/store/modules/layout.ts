@@ -1,6 +1,6 @@
 import { acceptHMRUpdate, defineStore, storeToRefs } from 'pinia'
 
-export const LAYOUT_STORE = 'app-layout'
+export const LAYOUT_STORE = 'app-layout-store'
 
 interface ILayoutStore {
   // 是否收起菜单
