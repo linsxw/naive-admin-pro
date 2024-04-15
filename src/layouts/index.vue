@@ -6,7 +6,7 @@ import { MainView } from './components/Main'
 import { TabView } from './components/TabView'
 import { useLayoutStore, useLayoutStoreRefs } from '@/store/modules/layout.ts'
 
-const { collapsed, sidebarTheme, headerTheme } = useLayoutStoreRefs()
+const { collapsed, getHeaderDarkTheme, getSidebarTheme } = useLayoutStoreRefs()
 const layoutStore = useLayoutStore()
 
 /** 是否是移动端 */
@@ -23,7 +23,7 @@ const showSideDrawer = computed({
 
 /** 判断是否触发移动端模式 */
 function checkMobileMode() {
-  isMobile.value = document.body.clientWidth <= 800
+  isMobile.value = document.body.clientWidth <= 675
   collapsed.value = false
 }
 
@@ -49,7 +49,7 @@ onMounted(() => {
       :collapsed-width="64"
       :width="270"
       :native-scrollbar="false"
-      :inverted="sidebarTheme === 'dark'"
+      :inverted="getSidebarTheme"
       class="layout-sider"
       @collapse="collapsed = true"
       @expand="collapsed = false"
@@ -70,7 +70,7 @@ onMounted(() => {
         :collapsed="false"
         :width="200"
         :native-scrollbar="false"
-        :inverted="sidebarTheme === 'dark'"
+        :inverted="getSidebarTheme"
         class="layout-sider"
       >
         <Logo :collapsed="collapsed" />
@@ -79,7 +79,7 @@ onMounted(() => {
     </n-drawer>
 
     <n-layout>
-      <n-layout-header position="absolute" :inverted="headerTheme === 'dark'">
+      <n-layout-header position="absolute" :inverted="getHeaderDarkTheme">
         <PageHeader v-model:collapsed="collapsed" />
       </n-layout-header>
 

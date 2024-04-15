@@ -1,6 +1,9 @@
 <script setup lang="ts">
 import type { GlobalThemeOverrides } from 'naive-ui'
 import { Application } from '@/components/Application'
+import { useLayoutStore } from '@/store/modules/layout.ts'
+
+const layoutStore = useLayoutStore()
 
 const themeOverride: GlobalThemeOverrides = {
   common: {
@@ -34,10 +37,11 @@ const themeOverride: GlobalThemeOverrides = {
   },
 
 }
+layoutStore.initAppearance()
 </script>
 
 <template>
-  <n-config-provider :theme-overrides="themeOverride">
+  <n-config-provider :theme-overrides="themeOverride" :theme="layoutStore.naiveDarkTheme">
     <Application>
       <RouterView />
     </Application>

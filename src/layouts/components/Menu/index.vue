@@ -10,7 +10,7 @@ import { useLayoutStoreRefs } from '@/store/modules/layout.ts'
 defineProps<{
   collapsed: boolean
 }>()
-const { sidebarTheme } = useLayoutStoreRefs()
+const { getSidebarTheme } = useLayoutStoreRefs()
 const router = useRouter()
 
 function renderIcon(icon: Component) {
@@ -80,7 +80,7 @@ function onUpdateMenuValue(value: string) {
 <template>
   <n-menu
     :collapsed="collapsed"
-    :inverted="sidebarTheme === 'dark'"
+    :inverted="getSidebarTheme"
     :options="menuOptions"
     :collapsed-width="64"
     :indent="18"

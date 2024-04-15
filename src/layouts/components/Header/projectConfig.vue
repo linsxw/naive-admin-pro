@@ -1,7 +1,11 @@
 <script setup lang="ts">
 import { MoonOutline, SunnyOutline } from '@vicons/ionicons5'
+import { useLayoutStoreRefs } from '@/store/modules/layout.ts'
 
 const active = defineModel({ type: Boolean, default: false })
+
+const { appearance } = useLayoutStoreRefs()
+
 const configSetting = ref()
 const animateOptions = [
   {
@@ -24,7 +28,12 @@ const animateOptions = [
     <n-drawer-content title="系统配置">
       <n-divider>主题配置</n-divider>
       <div class="drawer-config-item justify-center">
-        <n-tabs type="segment" animated>
+        <n-tabs v-model:value="appearance" type="segment" animated>
+          <n-tab-pane name="auto">
+            <template #tab>
+              自动
+            </template>
+          </n-tab-pane>
           <n-tab-pane name="sun">
             <template #tab>
               <n-icon><SunnyOutline /></n-icon>
