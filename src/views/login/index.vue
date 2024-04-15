@@ -64,12 +64,12 @@ function handleSubmit(e: MouseEvent) {
         <n-carousel>
           <div class="h-full flex flex-col items-center justify-center pb-5 md:pb-0" style="background-color: #42b8f1">
             <img class="h-[400px] w-[500px]" src="@/assets/image/banner.png" alt="banner">
-            <div class="mb-4 pt-[50px] text-[26px] text-white font-bold">
+            <n-el tag="div" class="mb-4 pt-[50px] text-[26px] text-white font-bold">
               极致的用户体验
-            </div>
-            <p class="text-mini text-white">
+            </n-el>
+            <n-el tag="p" class="text-mini text-white">
               多生态支持、功能丰富、高颜值模板
-            </p>
+            </n-el>
           </div>
         </n-carousel>
       </div>
@@ -84,7 +84,7 @@ function handleSubmit(e: MouseEvent) {
             <n-el tag="div" class="mb-3 text-center text-2xl font-bold">
               Naive Admin Pro
             </n-el>
-            <n-el tag="div" class="text-mini mb-8 text-center">
+            <n-el tag="div" class="mb-8 text-center">
               基于Naive UI的后台管理系统
             </n-el>
             <n-form ref="formRef" :show-require-mark="false" :show-label="false" :model="formData" :rules="rules">
@@ -132,7 +132,7 @@ function handleSubmit(e: MouseEvent) {
           </div>
         </div>
         <div class="flex pb-5 pt-10 md:absolute md:bottom-[22px] md:left-[50%] md:translate-x-[-50%] md:p-0">
-          <n-el tag="div" style="color:var(--text-color-3)">
+          <n-el tag="div">
             Copyright © 2024 linsxw. All Rights Reserved
           </n-el>
         </div>

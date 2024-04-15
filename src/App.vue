@@ -45,5 +45,6 @@ layoutStore.initAppearance()
     <Application>
       <RouterView />
     </Application>
+    <n-global-style />
   </n-config-provider>
 </template>
