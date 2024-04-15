@@ -1,7 +1,7 @@
 import { acceptHMRUpdate, defineStore, storeToRefs } from 'pinia'
 import { darkTheme } from 'naive-ui'
 import type { BuiltInGlobalTheme } from 'naive-ui/es/themes/interface'
-import { Appearance } from '@/store/constant'
+import { AppearanceEnum, SidebarThemeEnum } from '@/store/constant'
 
 export const LAYOUT_STORE = 'app-layout-store'
 
@@ -25,9 +25,9 @@ interface ILayoutStore {
   // 切换动画类型
   pageAnimateType: string
   // 侧边栏主题
-  sidebarTheme: 'light' | 'dark'
+  sidebarTheme: SidebarThemeEnum
   // 外观
-  appearance: Appearance
+  appearance: AppearanceEnum
   // 是否是暗黑模式
   appearanceTheme: boolean
   // naive外观包
@@ -46,8 +46,8 @@ const useLayoutStore = defineStore(LAYOUT_STORE, {
       isMobile: false,
       pageAnimate: true,
       pageAnimateType: 'fade',
-      sidebarTheme: 'dark',
-      appearance: Appearance.Auto,
+      sidebarTheme: SidebarThemeEnum.Dark,
+      appearance: AppearanceEnum.Auto,
       appearanceTheme: false,
       naiveDarkTheme: null,
     }
@@ -73,20 +73,20 @@ const useLayoutStore = defineStore(LAYOUT_STORE, {
       const isDarkMode = useMediaQuery('(prefers-color-scheme: dark)')
 
       const setDarkMode = () => {
-        if (this.appearance === Appearance.Auto) {
+        if (this.appearance === AppearanceEnum.Auto) {
           darkMode.value = isDarkMode.value
           return
         }
-        darkMode.value = this.appearance === Appearance.Moon
+        darkMode.value = this.appearance === AppearanceEnum.Moon
       }
 
       watch(() => isDarkMode.value, () => {
         setDarkMode()
         if (isDarkMode.value) {
-          this.appearance = Appearance.Moon
+          this.appearance = AppearanceEnum.Moon
           return
         }
-        this.appearance = Appearance.Sun
+        this.appearance = AppearanceEnum.Sun
       })
 
       watch(() => darkMode.value, () => {
