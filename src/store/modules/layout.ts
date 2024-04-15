@@ -27,7 +27,8 @@ interface ILayoutStore {
   // 侧边栏主题
   sidebarTheme: 'light' | 'dark'
   // 外观
-  appearance: 'auto' | 'sun' | 'moon'
+  appearance: Appearance
+  // 是否是暗黑模式
   appearanceTheme: boolean
   // naive外观包
   naiveDarkTheme: BuiltInGlobalTheme | null
@@ -86,8 +87,6 @@ const useLayoutStore = defineStore(LAYOUT_STORE, {
           return
         }
         this.appearance = Appearance.Sun
-      }, {
-        immediate: true,
       })
 
       watch(() => darkMode.value, () => {
@@ -99,6 +98,8 @@ const useLayoutStore = defineStore(LAYOUT_STORE, {
 
       watch(() => this.appearance, () => {
         setDarkMode()
+      }, {
+        immediate: true,
       })
     },
   },
