@@ -1,4 +1,5 @@
 import { acceptHMRUpdate, defineStore, storeToRefs } from 'pinia'
+import { Appearance } from '@/store/constant'
 
 export const LAYOUT_STORE = 'app-layout-store'
 
@@ -23,7 +24,8 @@ interface ILayoutStore {
   pageAnimateType: string
   // 侧边栏主题
   sidebarTheme: 'light' | 'dark'
-
+  // 外观
+  appearance: 'auto' | 'sun' | 'moon'
 }
 
 const useLayoutStore = defineStore(LAYOUT_STORE, {
@@ -39,6 +41,7 @@ const useLayoutStore = defineStore(LAYOUT_STORE, {
       pageAnimate: true,
       pageAnimateType: 'fade',
       sidebarTheme: 'dark',
+      appearance: Appearance.Auto,
     }
   },
   getters: {

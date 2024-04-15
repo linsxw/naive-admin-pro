@@ -25,12 +25,12 @@ const animateOptions = [
       <n-divider>主题配置</n-divider>
       <div class="drawer-config-item justify-center">
         <n-tabs type="segment" animated>
-          <n-tab-pane name="chap1">
+          <n-tab-pane name="sun">
             <template #tab>
               <n-icon><SunnyOutline /></n-icon>
             </template>
           </n-tab-pane>
-          <n-tab-pane name="chap2">
+          <n-tab-pane name="moon">
             <template #tab>
               <n-icon><MoonOutline /></n-icon>
             </template>
