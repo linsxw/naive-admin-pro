@@ -32,6 +32,9 @@ export default defineConfig({
         'vue',
         'vue-router',
         'pinia',
+        {
+          '@vueuse/core': ['useMediaQuery'],
+        },
       ],
       dts: 'types/auto-imports.d.ts',
       dirs: ['src/composables'],
