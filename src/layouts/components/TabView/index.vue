@@ -57,12 +57,12 @@ watch(
     <div class="tab-view-content">
       <n-scrollbar x-scrollable>
         <div class="tab-view-content-wrapper">
-          <div v-for="(item, index) in tabViewStore.tabList" :key="index" class="tab-view-item" :class="{ 'active-tab-view': item.fullPath === activeKey }" @click="$router.push(item.fullPath)">
+          <n-el v-for="(item, index) in tabViewStore.tabList" :key="index" tag="div" class="tab-view-item" :class="{ 'active-tab-view': item.fullPath === activeKey }" @click="$router.push(item.fullPath)">
             <span>{{ item.meta.title }}</span>
             <n-icon :size="14" class="ml-2">
               <CloseOutlined />
             </n-icon>
-          </div>
+          </n-el>
         </div>
       </n-scrollbar>
     </div>
@@ -79,7 +79,7 @@ watch(
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: #ffffff;
+  background-color: var(--n-color);
   box-shadow: 0 1px 4px rgb(0 21 41 / 8%);
   height: 40px;
   transition: width 0s;
@@ -110,7 +110,7 @@ watch(
         border-radius: 4px;
         margin-right: 10px;
         cursor: pointer;
-        background: #f5f7f9;
+        background: var(--base-color);
         font-size: 13px;
         transition: color .3s;
       }

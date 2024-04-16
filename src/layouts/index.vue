@@ -81,11 +81,11 @@ onMounted(() => {
     <n-layout>
       <n-layout-header position="absolute" :inverted="getHeaderDarkTheme">
         <PageHeader v-model:collapsed="collapsed" />
+        <TabView :collapsed="collapsed" />
       </n-layout-header>
 
       <n-layout-content class="layout-content layout-default-background">
         <div class="layout-content-main">
-          <TabView :collapsed="collapsed" />
           <div class="main-view main-view-fix">
             <MainView />
           </div>
