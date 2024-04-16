@@ -1,3 +1,6 @@
+@use './vars/index.scss';
+
+
 /** 自定义 滚动条 样式 */
 *::-webkit-scrollbar {
   height: 10px;
