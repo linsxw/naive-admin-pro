@@ -79,10 +79,9 @@ watch(
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: var(--n-color);
-  box-shadow: 0 1px 4px rgb(0 21 41 / 8%);
   height: 40px;
   transition: width 0s;
+  border-top: 1px solid var(--n-border-color);
   &-fixed {
     position: fixed;
     top: 64px;

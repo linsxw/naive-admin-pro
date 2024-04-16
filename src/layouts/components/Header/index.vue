@@ -84,7 +84,6 @@ const avatarOptions = [
   transition: all 0.2s ease-in-out;
   width: 100%;
   z-index: 11;
-
   &-left {
     display: flex;
     align-items: center;
