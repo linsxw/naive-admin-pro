@@ -24,12 +24,12 @@ const menuOptions: MenuOption[] = [
     icon: renderIcon(BookIcon),
     children: [
       {
-        label: '分析页',
+        label: '工作台',
         key: 'DashboardWorkplace',
         icon: renderIcon(PersonIcon),
       },
       {
-        label: '工作台',
+        label: '分析页',
         key: 'DashboardAnalysis',
         icon: renderIcon(PersonIcon),
       },

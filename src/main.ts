@@ -2,7 +2,7 @@ import { createApp } from 'vue'
 import App from './App.vue'
 
 import 'uno.css'
-import '@/assets/scss/index.scss'
+import '@/styles/scss/index.scss'
 import { setupStore } from './store'
 import { setupRouter } from './router'
 

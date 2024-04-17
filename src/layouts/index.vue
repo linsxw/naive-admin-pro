@@ -85,8 +85,8 @@ onMounted(() => {
 
       <n-layout-content class="layout-content layout-default-background">
         <div class="layout-content-main">
-          <TabView :collapsed="collapsed" />
           <div class="main-view main-view-fix">
+            <TabView :collapsed="collapsed" />
             <MainView />
           </div>
         </div>
@@ -100,7 +100,7 @@ onMounted(() => {
 .layout {
 
   &-default-background {
-    background: #f5f7f9;
+    background: var(--app-bg);
   }
 
   .layout-sider {
