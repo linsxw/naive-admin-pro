@@ -4,7 +4,6 @@ import vue from '@vitejs/plugin-vue'
 import Unocss from 'unocss/vite'
 import AutoImport from 'unplugin-auto-import/vite'
 import Components from 'unplugin-vue-components/vite'
-import VueDevTools from 'vite-plugin-vue-devtools'
 import { NaiveUiResolver } from 'unplugin-vue-components/resolvers'
 import { viteMockServe } from 'vite-plugin-mock'
 import ViteSvgLoader from 'vite-svg-loader'
@@ -33,7 +32,7 @@ export default defineConfig({
         'vue-router',
         'pinia',
         {
-          '@vueuse/core': ['useMediaQuery'],
+          '@vueuse/core': ['useMediaQuery', 'useDark'],
         },
       ],
       dts: 'types/auto-imports.d.ts',
@@ -55,7 +54,7 @@ export default defineConfig({
     }),
 
     // vue 调试工具
-    VueDevTools(),
+    // VueDevTools(),
 
     progress(),
 

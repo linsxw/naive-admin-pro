@@ -70,6 +70,13 @@ const useLayoutStore = defineStore(LAYOUT_STORE, {
     initAppearance() {
       const darkMode = ref<boolean>(false)
 
+      const isDark = useDark({
+        selector: 'body',
+        attribute: 'class',
+        valueDark: 'dark',
+        valueLight: 'light',
+      })
+
       const isDarkMode = useMediaQuery('(prefers-color-scheme: dark)')
 
       const setDarkMode = () => {
@@ -92,6 +99,7 @@ const useLayoutStore = defineStore(LAYOUT_STORE, {
       watch(() => darkMode.value, () => {
         this.naiveDarkTheme = darkMode.value ? darkTheme : null
         this.appearanceTheme = darkMode.value
+        isDark.value = !!darkMode.value
       }, {
         immediate: true,
       })
