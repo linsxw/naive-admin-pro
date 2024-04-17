@@ -1,8 +1,11 @@
-html {
+:root {
   // 主题
   --app-bg: #f5f7f9;
+  --app-tabview-bg: #eeeeee;
 }
 
-html.dark {
+body.dark {
   --app-bg: #1e1e1e;
+  --app-tabview-bg: #000 ;
 }
+

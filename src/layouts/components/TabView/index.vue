@@ -2,13 +2,15 @@
 import { CloseOutlined, LeftOutlined, RightOutlined } from '@vicons/antd'
 import type { ITabViewStore, RouteItem } from '@/store/modules/tabView.ts'
 import { TAB_VIEW_STORE, useTabViewStore } from '@/store/modules/tabView.ts'
+import { useLayoutStoreRefs } from '@/store/modules/layout.ts'
 
-defineProps({
+const props = defineProps({
   collapsed: Boolean,
 })
 
 const route = useRoute()
 const tabViewStore = useTabViewStore()
+const { isMobile } = useLayoutStoreRefs()
 const activeKey = ref<string>(route.fullPath)
 
 let cacheTabList: RouteItem[] = []
@@ -30,6 +32,15 @@ function getSimpleRoute(route: RouteItem): RouteItem {
   return JSON.parse(JSON.stringify(route))
 }
 
+const computedWidth = computed(() => {
+  if (isMobile.value) {
+    return '100%'
+  }
+  else {
+    return `calc(100% - ${props.collapsed ? '64px' : '270px'})`
+  }
+})
+
 // 白名单
 const whiteList: string[] = []
 
@@ -48,7 +59,7 @@ watch(
 </script>
 
 <template>
-  <div class="tab-view tab-view-fixed" :style="{ width: `calc(100% - ${collapsed ? '64px' : '270px'})` }">
+  <div class="tab-view tab-view-fixed" :style="{ width: computedWidth }">
     <div class="tab-view-left">
       <n-icon size="18">
         <LeftOutlined />
@@ -80,7 +91,6 @@ watch(
   justify-content: space-between;
   align-items: center;
   height: 40px;
-  transition: width 0s;
   border-top: 1px solid var(--n-border-color);
   &-fixed {
     position: fixed;
@@ -109,7 +119,7 @@ watch(
         border-radius: 4px;
         margin-right: 10px;
         cursor: pointer;
-        background: var(--base-color);
+        background: var(--app-tabview-bg);
         font-size: 13px;
         transition: color .3s;
       }
