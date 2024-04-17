@@ -3,13 +3,13 @@
 </script>
 
 <template>
-  <div class="page">
+  <div class="container">
     <slot />
   </div>
 </template>
 
 <style lang="scss" scoped>
-.page {
+.container {
   padding: 14px;
 }
 </style>

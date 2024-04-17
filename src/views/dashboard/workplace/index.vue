@@ -1,11 +1,11 @@
 <script setup lang="ts">
-
+import { Container } from '@/components/Container'
 </script>
 
 <template>
-  <PageContainer :card="false" content="页面数据为 Mock 示例数据，非真实数据。">
+  <Container>
     <n-card>没有标题</n-card>
-  </PageContainer>
+  </Container>
 </template>
 
 <style scoped lang="scss">

@@ -5,6 +5,7 @@ import {
   BookOutline as BookIcon,
   PersonOutline as PersonIcon,
 } from '@vicons/ionicons5'
+import { onMounted } from 'vue'
 import { useLayoutStoreRefs } from '@/store/modules/layout.ts'
 
 defineProps<{
@@ -36,23 +37,25 @@ const menuOptions: MenuOption[] = [
     ],
   },
   {
-    label: '系统管理',
-    key: 'dance-dance-dance',
+    label: '功能',
+    key: 'Feature',
     icon: renderIcon(BookIcon),
     children: [
       {
-        label: '用户管理',
-        key: 'user',
+        label: 'JSON预览',
+        key: 'JsonPreview',
         icon: renderIcon(PersonIcon),
       },
+    ],
+  },
+  {
+    label: '组件',
+    key: 'Component',
+    icon: renderIcon(BookIcon),
+    children: [
       {
-        label: '角色管理',
-        key: 'roles',
-        icon: renderIcon(PersonIcon),
-      },
-      {
-        label: '菜单管理',
-        key: 'menu',
+        label: '按钮',
+        key: 'CompButton',
         icon: renderIcon(PersonIcon),
       },
     ],
@@ -75,6 +78,10 @@ function handleUpdateExpandedKeys(keys: string[]) {
 function onUpdateMenuValue(value: string) {
   router.push({ name: value })
 }
+
+onMounted(() => {
+  console.log(router.getRoutes())
+})
 </script>
 
 <template>
