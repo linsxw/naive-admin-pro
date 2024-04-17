@@ -11,5 +11,6 @@
 <style lang="scss" scoped>
 .container {
   padding: 14px;
+  box-sizing: border-box;
 }
 </style>
