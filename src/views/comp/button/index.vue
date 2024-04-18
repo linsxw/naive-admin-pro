@@ -1,12 +1,13 @@
 <script setup lang="ts">
-import { CashOutline as CashIcon } from '@vicons/ionicons5'
+import { CashOutline as CashIcon, TrainOutline as TrainIcon } from '@vicons/ionicons5'
 </script>
 
 <template>
-  <Container>
-    <n-grid x-gap="12" :cols="2">
+  <Container title="基础组件" description="基于Naive Ui的Button组件">
+    <n-grid x-gap="12" y-gap="12" :cols="2">
       <n-gi>
-        <n-card title="基础按钮">
+        <n-card>
+          <h3>基础按钮</h3>
           <n-space>
             <n-button>Default</n-button>
             <n-button type="tertiary">
@@ -28,11 +29,52 @@ import { CashOutline as CashIcon } from '@vicons/ionicons5'
               Error
             </n-button>
           </n-space>
+
+          <h3>虚线按钮</h3>
+          <n-space>
+            <n-button dashed>
+              Default
+            </n-button>
+            <n-button type="primary" dashed>
+              Primary
+            </n-button>
+            <n-button type="info" dashed>
+              Info
+            </n-button>
+            <n-button type="success" dashed>
+              Success
+            </n-button>
+            <n-button type="warning" dashed>
+              Warning
+            </n-button>
+            <n-button type="error" dashed>
+              Error
+            </n-button>
+          </n-space>
+
+          <h3>文本按钮</h3>
+          <n-space>
+            <n-button text>
+              <template #icon>
+                <n-icon>
+                  <TrainIcon />
+                </n-icon>
+              </template>
+              那车头依然吐着烟
+            </n-button>
+          </n-space>
+          <h3>Loading</h3>
+          <n-space>
+            <n-button :loading="true">
+              Loading
+            </n-button>
+          </n-space>
         </n-card>
       </n-gi>
 
       <n-gi>
-        <n-card title="次要按钮">
+        <n-card>
+          <h3>次要按钮</h3>
           <n-space>
             <n-button strong secondary>
               Default
@@ -104,11 +146,8 @@ import { CashOutline as CashIcon } from '@vicons/ionicons5'
               </template>
             </n-button>
           </n-space>
-        </n-card>
-      </n-gi>
 
-      <n-gi>
-        <n-card title="次次要按钮">
+          <h3>次次要按钮</h3>
           <n-space>
             <n-button tertiary>
               Default
@@ -175,11 +214,8 @@ import { CashOutline as CashIcon } from '@vicons/ionicons5'
               </template>
             </n-button>
           </n-space>
-        </n-card>
-      </n-gi>
 
-      <n-gi>
-        <n-card title="次次次要按钮">
+          <h3>次次次要按钮</h3>
           <n-space>
             <n-button quaternary>
               Default
