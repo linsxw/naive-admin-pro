@@ -1,16 +1,53 @@
 <script setup lang="ts">
-
+defineProps<{
+  title?: string
+  description?: string
+}>()
 </script>
 
 <template>
   <div class="container">
-    <slot />
+    <div v-if="title" class="container-header">
+      <div class="header-left">
+        <div class="title">
+          {{ title }}
+        </div>
+        <div class="content">
+          {{ description }}
+        </div>
+      </div>
+      <div class="header-right">
+        <slot name="extra" />
+      </div>
+    </div>
+    <div class="container-main">
+      <slot />
+    </div>
   </div>
 </template>
 
 <style lang="scss" scoped>
 .container {
-  padding: 14px;
   box-sizing: border-box;
+  &-header {
+    background-color: white;
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+    .header-left {
+      .title {
+        font-size: 20px;
+        font-weight: bold;
+      }
+      .content {
+        font-size: 14px;
+        color: #666;
+        margin-top: 10px;
+      }
+    }
+  }
+  &-main {
+    padding: 14px;
+  }
 }
 </style>
