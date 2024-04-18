@@ -26,7 +26,7 @@ Naive Admin Pro Building...
 
 ```bash
 # 克隆项目
-git clone https@github.com:linsxw/naive-admin-pro.git
+git clone https://github.com/linsxw/naive-admin-pro.git
 
 # 进入项目目录
 cd naive-admin-pro
