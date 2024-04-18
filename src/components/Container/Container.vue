@@ -7,7 +7,7 @@ defineProps<{
 
 <template>
   <div class="container">
-    <div v-if="title" class="container-header">
+    <n-el v-if="title" tag="div" class="container-header">
       <div class="header-left">
         <div class="title">
           {{ title }}
@@ -19,7 +19,7 @@ defineProps<{
       <div class="header-right">
         <slot name="extra" />
       </div>
-    </div>
+    </n-el>
     <div class="container-main">
       <slot />
     </div>
@@ -30,7 +30,7 @@ defineProps<{
 .container {
   box-sizing: border-box;
   &-header {
-    background-color: white;
+    background-color: var(--card-color);
     display: flex;
     justify-content: space-between;
     padding: 20px;

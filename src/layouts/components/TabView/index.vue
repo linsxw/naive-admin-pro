@@ -59,7 +59,7 @@ watch(
 </script>
 
 <template>
-  <div class="tab-view tab-view-fixed" :style="{ width: computedWidth }">
+  <n-el tag="div" class="tab-view tab-view-fixed" :style="{ width: computedWidth }">
     <div class="tab-view-left">
       <n-icon size="18">
         <LeftOutlined />
@@ -82,7 +82,7 @@ watch(
         <RightOutlined />
       </n-icon>
     </div>
-  </div>
+  </n-el>
 </template>
 
 <style scoped lang="scss">
@@ -90,8 +90,10 @@ watch(
   display: flex;
   justify-content: space-between;
   align-items: center;
+  background-color: var(--card-color);
   height: 40px;
-  border-top: 1px solid var(--n-border-color);
+  border-top: 1px solid var(--divider-color);
+  border-bottom: 1px solid var(--divider-color);
   &-fixed {
     position: fixed;
     top: 64px;
@@ -119,7 +121,7 @@ watch(
         border-radius: 4px;
         margin-right: 10px;
         cursor: pointer;
-        background: var(--app-tabview-bg);
+        background: var(--tag-color);
         font-size: 13px;
         transition: color .3s;
       }
