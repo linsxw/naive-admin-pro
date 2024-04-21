@@ -16,7 +16,7 @@ import { UserOutlined } from '@vicons/antd'
           早安，小伟同学.，开始您一天的工作吧！
         </div>
         <n-el tag="div" class="mb-1 flex items-center md:mb-0" :style="{ color: 'var(--text-color-3)' }">
-          今日阴转小雨，22℃ - 32℃，出门记得带伞哦。
+          愿你殊途同归，我能和你讲讲来时的路.
         </n-el>
       </div>
     </div>
