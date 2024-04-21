@@ -6,8 +6,8 @@ defineProps<{
 </script>
 
 <template>
-  <div class="container">
-    <n-el v-if="title" tag="div" class="container-header">
+  <div class="app-container">
+    <n-el v-if="title" tag="div" class="app-container-header">
       <div class="header-left">
         <div class="title">
           {{ title }}
@@ -20,14 +20,14 @@ defineProps<{
         <slot name="extra" />
       </div>
     </n-el>
-    <div class="container-main">
+    <div class="app-container-main">
       <slot />
     </div>
   </div>
 </template>
 
 <style lang="scss" scoped>
-.container {
+.app-container {
   box-sizing: border-box;
   &-header {
     background-color: var(--card-color);
