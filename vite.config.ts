@@ -1,9 +1,10 @@
 import { resolve } from 'node:path'
 import { defineConfig } from 'vite'
-import vue from '@vitejs/plugin-vue'
+import Vue from '@vitejs/plugin-vue'
 import Unocss from 'unocss/vite'
 import AutoImport from 'unplugin-auto-import/vite'
 import Components from 'unplugin-vue-components/vite'
+import VueMacros from 'unplugin-vue-macros/vite'
 import { NaiveUiResolver } from 'unplugin-vue-components/resolvers'
 import { viteMockServe } from 'vite-plugin-mock'
 import ViteSvgLoader from 'vite-svg-loader'
@@ -21,7 +22,11 @@ export default defineConfig({
     open: true,
   },
   plugins: [
-    vue(),
+    VueMacros({
+      plugins: {
+        vue: Vue(),
+      },
+    }),
 
     Unocss(),
 

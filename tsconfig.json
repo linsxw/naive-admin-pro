@@ -13,7 +13,7 @@
       "@/*": ["src/*"]
     },
     "resolveJsonModule": true,
-    "types": ["node", "vite/client"],
+    "types": ["node", "vite/client", "unplugin-vue-macros/macros-global"],
     "allowImportingTsExtensions": true,
 
     /* Linting */
@@ -24,6 +24,9 @@
     "noEmit": true,
     "isolatedModules": true,
     "skipLibCheck": true
+  },
+  "vueCompilerOptions": {
+    "target": 3
   },
   "references": [{ "path": "./tsconfig.node.json" }],
   "include": ["src/**/*.ts", "src/**/*.tsx", "src/**/*.vue", "types/**.d.ts"],
