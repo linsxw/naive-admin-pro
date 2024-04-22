@@ -3,7 +3,7 @@ import VueHook from 'alova/vue'
 import GlobalFetch from 'alova/GlobalFetch'
 
 export const useHttp = createAlova({
-  baseURL: '/api',
+  baseURL: import.meta.env.VITE_BASE_API,
   statesHook: VueHook,
   requestAdapter: GlobalFetch(),
   timeout: 10000,

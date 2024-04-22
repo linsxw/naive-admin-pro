@@ -4,3 +4,7 @@ declare interface Window {
   $message: import('naive-ui').MessageProviderInst
   $notification: import('naive-ui').NotificationProviderInst
 }
+
+interface ImportMeta {
+  readonly env: Env.ImportMeta
+}

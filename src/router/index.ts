@@ -1,10 +1,10 @@
 import type { App } from 'vue'
 import type { RouteRecordRaw } from 'vue-router'
-import { createRouter, createWebHashHistory } from 'vue-router'
+import { createRouter, createWebHashHistory, createWebHistory } from 'vue-router'
 import { setupRouterGuard } from '@/router/guard'
 
 const fixedModules = import.meta.glob('./modules/**/*.ts', { eager: true })
-
+const isHash = import.meta.env.VITE_USE_HASH === 'true'
 // 其他固定路由
 const defaultRouterList: Array<RouteRecordRaw> = [
   // 根路由
@@ -42,7 +42,7 @@ export function mapModuleRouterList(modules: Record<string, unknown>): Array<Rou
  * 创建路由对象
  */
 export const router = createRouter({
-  history: createWebHashHistory('/'),
+  history: isHash ? createWebHashHistory('/') : createWebHistory('/'),
   routes: allRoutes,
   scrollBehavior() {
     return {

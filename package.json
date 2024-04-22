@@ -14,8 +14,9 @@
     "pnpm": ">=8.0.0"
   },
   "scripts": {
-    "dev": "vite --port 7777",
-    "build": "vue-tsc && vite build",
+    "dev": "vite --mode development",
+    "build:dev": "vue-tsc && vite build --mode development",
+    "build:production": "vue-tsc && vite build --mode production",
     "build:no-tsc": "vite build",
     "preview": "vite preview --port 4100",
     "lint": "eslint .",
