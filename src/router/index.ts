@@ -1,6 +1,7 @@
 import type { App } from 'vue'
 import type { RouteRecordRaw } from 'vue-router'
 import { createRouter, createWebHashHistory } from 'vue-router'
+import { setupRouterGuard } from '@/router/guard'
 
 const fixedModules = import.meta.glob('./modules/**/*.ts', { eager: true })
 
@@ -57,5 +58,6 @@ export const router = createRouter({
  * @param app
  */
 export function setupRouter(app: App) {
+  setupRouterGuard(router)
   app.use(router)
 }
