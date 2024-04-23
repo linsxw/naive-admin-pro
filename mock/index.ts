@@ -1,4 +1,3 @@
-import Mock from 'mockjs'
 import type { MockMethod } from 'vite-plugin-mock'
 
 export default [
@@ -8,7 +7,7 @@ export default [
     response: () => ({
       code: 200,
       data: {
-        accessToken: Mock.mock('@guid'),
+        accessToken: 'naive-admin-token-demo',
       },
     }),
   },
