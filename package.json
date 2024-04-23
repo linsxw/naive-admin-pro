@@ -50,6 +50,7 @@
     "husky": "^9.0.11",
     "lint-staged": "^15.2.2",
     "mockjs": "^1.1.0",
+    "rollup": "^4.16.3",
     "sass": "^1.75.0",
     "typescript": "^5.4.5",
     "unocss": "^0.59.3",
