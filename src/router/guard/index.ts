@@ -1,8 +1,11 @@
 import type { Router } from 'vue-router'
 import { createPageTitleGuard } from './page-title-guard'
-import { createPageLoadingGuard } from '@/router/guard/page-loading-guard.ts'
+import { createPagePermissionGuard } from '@/router/guard/page-permission-guard.ts'
 
+/**
+ * 初始化路由拦截守卫
+ */
 export function setupRouterGuard(router: Router) {
   createPageTitleGuard(router)
-  createPageLoadingGuard(router)
+  createPagePermissionGuard(router)
 }
