@@ -6,6 +6,7 @@ declare namespace Login {
   interface LoginParam {
     username: string
     password: string
+    code: string
   }
 
   /**

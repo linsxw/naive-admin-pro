@@ -10,6 +10,7 @@ const message = useMessage()
 const formData = ref<Login.LoginParam>({
   username: 'admin',
   password: 'admin123',
+  code: '12345',
 })
 
 const rules = reactive({
