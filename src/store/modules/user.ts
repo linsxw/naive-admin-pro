@@ -61,3 +61,8 @@ export const useUserStore = defineStore(USER_STORE, {
     paths: ['token'],
   },
 })
+
+/**
+ * 通过 storeToRefs 将 store 的属性转换为 ref
+ */
+export const useUserStoreRefs = () => storeToRefs(useUserStore())
