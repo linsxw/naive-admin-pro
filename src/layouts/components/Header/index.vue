@@ -3,6 +3,7 @@ import { Menu } from '@vicons/ionicons5'
 import { FullscreenOutlined, GithubOutlined, SettingOutlined } from '@vicons/antd'
 import { Breadcrumb } from '../Breadcrumb'
 import ProjectConfig from './projectConfig.vue'
+import { useUserStoreRefs } from '@/store/modules/user.ts'
 
 defineProps({
   collapsed: Boolean,
@@ -10,6 +11,7 @@ defineProps({
 
 const emits = defineEmits(['update:collapsed'])
 const activeProjectConfig = ref(false)
+const { username, avatar } = useUserStoreRefs()
 
 const avatarOptions = [
   {
@@ -63,8 +65,8 @@ const avatarOptions = [
         </n-button>
         <n-dropdown :options="avatarOptions">
           <div class="flex cursor-pointer items-center pl-4 space-x-1">
-            <n-avatar round :size="35" src="https://pic.imgdb.cn/item/634f902116f2c2beb11a3cc7.jpg" />
-            <span>小伟同学.</span>
+            <n-avatar round :size="35" :src="avatar" />
+            <span>{{ username }}</span>
           </div>
         </n-dropdown>
       </n-flex>
