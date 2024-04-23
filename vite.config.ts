@@ -79,6 +79,14 @@ export default ({ mode }: ConfigEnv) => {
       }),
     ],
 
+    experimental: {
+      renderBuiltUrl(filename) {
+        // 由于下面打包后对应的文件名称会打包在不同的目录 filename 的值就是css/xxx.css 这样
+        // 如果需要cdn 那应该就是域名+filename 路径就好了
+        // 例如这样 `https://www.linasan.cn/css/index.css` css/index.css 就是filename的值
+        return filename
+      },
+    },
     build: {
       cssCodeSplit: true,
       assetsInlineLimit: 5000,
