@@ -1,6 +1,8 @@
 declare namespace Env {
 
   interface ImportMeta {
+    /** 环境变量 */
+    MODE: 'development' | 'production'
     /** 项目启动端口 */
     VITE_PORT: number
     /** 标题 */
