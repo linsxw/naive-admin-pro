@@ -2,14 +2,14 @@
 import type { FormInst } from 'naive-ui'
 import { useMessage } from 'naive-ui'
 import { CloudTwotone, LockTwotone, SafetyCertificateOutlined, UserOutlined } from '@vicons/antd'
+import { useUserStore } from '@/store/modules/user.ts'
 
 const router = useRouter()
 const route = useRoute()
 const message = useMessage()
-const formData = ref({
+const formData = ref<Login.LoginParam>({
   username: 'admin',
   password: 'admin123',
-  code: null,
 })
 
 const rules = reactive({
@@ -34,6 +34,7 @@ const redirect = computed(() => (route.query && route.query.redirect) || '/')
 const formChecked = ref(true)
 const formRef = ref<FormInst | null>(null)
 const loading = ref(false)
+const userStore = useUserStore()
 
 function handleSubmit(e: MouseEvent) {
   e.preventDefault()
@@ -41,7 +42,7 @@ function handleSubmit(e: MouseEvent) {
     if (!errors) {
       loading.value = true
       message.loading('登陆中...')
-      setTimeout(() => {
+      userStore.login(formData.value).then(() => {
         message.destroyAll()
         loading.value = false
         message.create('登录成功，即将进入系统', {
@@ -51,7 +52,7 @@ function handleSubmit(e: MouseEvent) {
             router.push(redirect.value as string)
           },
         })
-      }, 500)
+      })
     }
   })
 }
