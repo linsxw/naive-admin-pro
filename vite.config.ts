@@ -11,6 +11,7 @@ import { viteMockServe } from 'vite-plugin-mock'
 import ViteSvgLoader from 'vite-svg-loader'
 import progress from 'vite-plugin-progress'
 import { visualizer } from 'rollup-plugin-visualizer'
+import type { PreRenderedAsset } from 'rollup'
 
 // https://vitejs.dev/config/
 export default ({ mode }: ConfigEnv) => {
@@ -83,14 +84,22 @@ export default ({ mode }: ConfigEnv) => {
       assetsInlineLimit: 5000,
       rollupOptions: {
         output: {
-          manualChunks: (id) => {
-            // 从 node_modules 中引入的模块会被打包到一个独立的文件中
-            if (id.includes('/node_modules/')) {
-              // 以 node_modules 作为分割点，只分割 node_modules 中的模块
-              const dirArray = id.toString().split('/node_modules/')
-              const difFile = dirArray[2].split('/')[0].toString()
-              return `${difFile}/${difFile}`
+          // 具体文档参考 https://rollupjs.org/configuration-options
+          chunkFileNames: 'js/[name].[hash].js',
+          entryFileNames: 'js/[name].[hash].js',
+          assetFileNames(assetsInfo: PreRenderedAsset) {
+            if (assetsInfo.name && assetsInfo.name.endsWith('.css')) {
+              return 'css/[name].[hash].css'
             }
+            const imgExits = ['.png', '.jpg', '.jpeg', '.webp', '.svg', '.gif', '.ico']
+            if (imgExits.some(ext => assetsInfo.name && assetsInfo.name.endsWith(ext))) {
+              return 'images/[name]-[hash].[ext]'
+            }
+            const videoExits = ['.mp4', '.ogg']
+            if (videoExits.some(ext => assetsInfo.name && assetsInfo.name.endsWith(ext))) {
+              return 'video/[ext]/[name]-[hash].[ext]'
+            }
+            return 'assets/[name]-[hash].[ext]'
           },
         },
       },
