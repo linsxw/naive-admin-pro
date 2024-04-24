@@ -97,8 +97,16 @@ export function transformMenus(menus: RouteRecordRaw[]): MenuOption[] {
       key: menuItems.name as string,
       show: menuItems.meta?.hidden ?? true,
     }
-    if (Array.isArray(menuItems.children) && menuItems.children.length > 0) {
-      newMenuItems.children = transformMenus(menuItems.children)
+
+    if (Array.isArray(menuItems.children)) {
+      // 如果子菜单只有一个，那么直接将子菜单的name赋值给当前菜单的name
+      if (menuItems.children.length === 1) {
+        newMenuItems.name = menuItems.children[0].name
+      }
+      // 如果子菜单有多个，那么就重新转换
+      if (menuItems.children.length > 1) {
+        newMenuItems.children = transformMenus(menuItems.children)
+      }
     }
 
     newMenus.push(newMenuItems)

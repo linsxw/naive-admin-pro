@@ -9,7 +9,6 @@ defineProps<{
 const { getSidebarTheme } = useLayoutStoreRefs()
 
 const { menus } = useAsyncRouteStoreRefs()
-console.log(menus.value, 'menus')
 const router = useRouter()
 
 // function renderIcon(icon: Component) {
