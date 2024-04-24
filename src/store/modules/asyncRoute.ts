@@ -1,13 +1,16 @@
 import type { RouteRecordRaw } from 'vue-router'
+import { storeToRefs } from 'pinia'
+import type { MenuOption } from 'naive-ui'
 import { store } from '@/store'
 import { getMenus } from '@/api/login.ts'
 import { Layout, ParentLayout } from '@/router/constants.ts'
+import { fixedRouterList } from '@/router'
 
 export const ASYNC_ROUTE_STORE = 'app-async-route'
 
 export interface IAsyncRouteState {
   /** 菜单 */
-  menus: any[]
+  menus: MenuOption[]
   /** 路由 */
   routers: any[]
   /** 已添加的路由 */
@@ -56,8 +59,9 @@ export const useAsyncRouteStore = defineStore(ASYNC_ROUTE_STORE, {
     /** 生成路由 */
     async generateRoutes() {
       const userRouters = await generateDynamicRoutes()
-      const accessRoutes = [...userRouters]
-      return accessRoutes
+      console.log(fixedRouterList, 'fixedRouterList')
+      this.setMenus(transformMenus([...fixedRouterList, ...userRouters]))
+      return [...userRouters]
     },
 
   },
@@ -78,6 +82,31 @@ function dynamicImport(viewsModules: Record<string, () => Promise<any>>, compone
   }
 }
 
+function getRouterTitle(router: RouteRecordRaw) {
+  if (Array.isArray(router.children) && router.children.length > 0) {
+    return router.children[0].meta?.title
+  }
+  return router.meta?.title
+}
+
+export function transformMenus(menus: RouteRecordRaw[]): MenuOption[] {
+  const newMenus: MenuOption[] = []
+  menus.forEach((menuItems: RouteRecordRaw) => {
+    const newMenuItems: MenuOption = {
+      title: getRouterTitle(menuItems),
+      key: menuItems.name as string,
+      show: menuItems.meta?.hidden ?? true,
+    }
+    if (Array.isArray(menuItems.children) && menuItems.children.length > 0) {
+      newMenuItems.children = transformMenus(menuItems.children)
+    }
+
+    newMenus.push(newMenuItems)
+  })
+
+  return newMenus
+}
+
 /**
  * 动态获取路由
  */
@@ -91,7 +120,7 @@ export async function generateDynamicRoutes() {
 /**
  * 格式化后端返回的菜单
  */
-export function generateRoutes(routerMap: Login.Menus, parent?: any): any[] {
+export function generateRoutes(routerMap: Login.Menus, parent?: any): RouteRecordRaw[] {
   return routerMap.map((item) => {
     const currentRoute: any = {
       // 路由地址 动态拼接生成如 /dashboard/workplace
@@ -148,6 +177,8 @@ export function asyncImportRoute(routes: any[] | undefined): void {
     children && asyncImportRoute(children)
   })
 }
+
+export const useAsyncRouteStoreRefs = () => storeToRefs(useAsyncRouteStore())
 
 export function useAsyncRoute() {
   return useAsyncRouteStore(store)

@@ -1,66 +1,21 @@
 <script setup lang="ts">
-import type { MenuOption } from 'naive-ui'
-import { NIcon } from 'naive-ui'
-import {
-  BookOutline as BookIcon,
-  PersonOutline as PersonIcon,
-} from '@vicons/ionicons5'
 import { onMounted } from 'vue'
 import { useLayoutStoreRefs } from '@/store/modules/layout.ts'
+import { useAsyncRouteStoreRefs } from '@/store/modules/asyncRoute.ts'
 
 defineProps<{
   collapsed: boolean
 }>()
 const { getSidebarTheme } = useLayoutStoreRefs()
+
+const { menus } = useAsyncRouteStoreRefs()
+console.log(menus.value, 'menus')
 const router = useRouter()
 
-function renderIcon(icon: Component) {
-  return () => h(NIcon, null, { default: () => h(icon) })
-}
+// function renderIcon(icon: Component) {
+//   return () => h(NIcon, null, { default: () => h(icon) })
+// }
 
-const menuOptions: MenuOption[] = [
-  {
-    label: 'Dashboard',
-    key: 'Dashboard',
-    icon: renderIcon(BookIcon),
-    children: [
-      {
-        label: '工作台',
-        key: 'DashboardWorkplace',
-        icon: renderIcon(PersonIcon),
-      },
-      {
-        label: '分析页',
-        key: 'DashboardAnalysis',
-        icon: renderIcon(PersonIcon),
-      },
-    ],
-  },
-  {
-    label: '功能',
-    key: 'Feature',
-    icon: renderIcon(BookIcon),
-    children: [
-      {
-        label: 'JSON预览',
-        key: 'JsonPreview',
-        icon: renderIcon(PersonIcon),
-      },
-    ],
-  },
-  {
-    label: '组件',
-    key: 'Component',
-    icon: renderIcon(BookIcon),
-    children: [
-      {
-        label: '按钮',
-        key: 'CompButton',
-        icon: renderIcon(PersonIcon),
-      },
-    ],
-  },
-]
 const defaultExpandedKeys = computed(() => {
   // 获取当前打开页面的路由的name
   return ['Dashboard', 'DashboardWorkplace', 'DashboardAnalysis']
@@ -88,7 +43,7 @@ onMounted(() => {
   <n-menu
     :collapsed="collapsed"
     :inverted="getSidebarTheme"
-    :options="menuOptions"
+    :options="menus"
     :collapsed-width="64"
     :indent="18"
     :show-trigger="false"
