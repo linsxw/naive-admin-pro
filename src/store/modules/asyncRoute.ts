@@ -82,7 +82,7 @@ function dynamicImport(viewsModules: Record<string, () => Promise<any>>, compone
   }
 }
 
-function getRouterTitle(router: RouteRecordRaw) {
+function getMenuTitle(router: RouteRecordRaw) {
   if (Array.isArray(router.children) && router.children.length > 0) {
     return router.children[0].meta?.title
   }
@@ -93,7 +93,7 @@ export function transformMenus(menus: RouteRecordRaw[]): MenuOption[] {
   const newMenus: MenuOption[] = []
   menus.forEach((menuItems: RouteRecordRaw) => {
     const newMenuItems: MenuOption = {
-      title: getRouterTitle(menuItems),
+      title: getMenuTitle(menuItems),
       key: menuItems.name as string,
       show: menuItems.meta?.hidden ?? true,
     }
