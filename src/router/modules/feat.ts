@@ -7,6 +7,7 @@ const routes: RouteRecordRaw[] = [
     name: 'Feature',
     component: Layout,
     redirect: '/feat/json-preview',
+    meta: { title: '外部组件' },
     children: [
       {
         path: 'json-preview',
@@ -15,6 +16,12 @@ const routes: RouteRecordRaw[] = [
         meta: {
           title: 'JSON预览',
         },
+      },
+      {
+        path: 'markdown',
+        name: 'Markdown',
+        component: () => import('@/views/feat/markdown/index.vue'),
+        meta: { title: 'Markdown编辑器' },
       },
     ],
   },
