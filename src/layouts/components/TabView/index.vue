@@ -93,9 +93,11 @@ watch(
         <div class="tab-view-content-wrapper">
           <n-el v-for="(item, index) in tabViewStore.tabList" :key="index" tag="div" class="tab-view-item" :class="{ 'active-tab-view': item.fullPath === activeKey }" @click="$router.push(item.fullPath)">
             <span>{{ item.meta.title }}</span>
-            <n-icon v-if="!item.meta.affix" :size="14" class="ml-2" @click.stop="onRemoveTabView(item)">
-              <CloseOutlined />
-            </n-icon>
+            <div v-if="!item.meta.affix" class="close-icon ml-2">
+              <n-icon :size="14" @click.stop="onRemoveTabView(item)">
+                <CloseOutlined />
+              </n-icon>
+            </div>
           </n-el>
         </div>
       </n-scrollbar>
@@ -147,6 +149,17 @@ watch(
         background: var(--tag-color);
         font-size: 13px;
         transition: color .3s;
+        .close-icon {
+          display: flex;
+          align-items: center;
+          border-radius: 50%;
+          padding: 2px;
+          &:hover {
+            background: var(--primary-color);
+            color: white;
+            transition: all .3s;
+          }
+        }
       }
       .active-tab-view {
         color: #42b8f1;
