@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { onMounted } from 'vue'
+import { computed, onMounted } from 'vue'
 import { useLayoutStoreRefs } from '@/store/modules/layout.ts'
 import { useAsyncRouteStoreRefs } from '@/store/modules/asyncRoute.ts'
 

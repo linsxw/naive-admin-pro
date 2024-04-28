@@ -5,6 +5,7 @@ import { store } from '@/store'
 import { getMenus } from '@/api/login.ts'
 import { Layout, ParentLayout } from '@/router/constants.ts'
 import { fixedRouterList } from '@/router'
+import { renderIconByConstant } from '@/router/icons.ts'
 
 export const ASYNC_ROUTE_STORE = 'app-async-route'
 
@@ -82,37 +83,54 @@ function dynamicImport(viewsModules: Record<string, () => Promise<any>>, compone
   }
 }
 
+/**
+ * 获取菜单标题
+ */
 function getMenuTitle(router: RouteRecordRaw) {
-  if (Array.isArray(router.children) && router.children.length > 0) {
+  if (Array.isArray(router.children) && router.children.length > 0 && !router.meta?.title) {
     return router.children[0].meta?.title
   }
   return router.meta?.title
 }
 
+/**
+ * 格式化菜单
+ */
 export function transformMenus(menus: RouteRecordRaw[]): MenuOption[] {
-  const newMenus: MenuOption[] = []
-  menus.forEach((menuItems: RouteRecordRaw) => {
-    const newMenuItems: MenuOption = {
-      title: getMenuTitle(menuItems),
-      key: menuItems.name as string,
-      show: menuItems.meta?.hidden ?? true,
-    }
-
-    if (Array.isArray(menuItems.children)) {
-      // 如果子菜单只有一个，那么直接将子菜单的name赋值给当前菜单的key
-      if (menuItems.children.length === 1) {
-        newMenuItems.key = menuItems.children[0].name as string
-      }
-      // 如果子菜单有多个，那么就重新转换
-      if (menuItems.children.length > 1) {
-        newMenuItems.children = transformMenus(menuItems.children)
-      }
-    }
-
-    newMenus.push(newMenuItems)
+  // 先对路由信息数组按照 meta.orderNo 排序
+  menus.sort((a, b) => {
+    const orderNoA = a.meta?.orderNo || 0
+    const orderNoB = b.meta?.orderNo || 0
+    return orderNoA - orderNoB
   })
 
-  return newMenus
+  // 然后进行转换
+  return menus.map((menuItem: RouteRecordRaw) => {
+    const newMenuItem: MenuOption = {
+      title: getMenuTitle(menuItem),
+      key: menuItem.name as string,
+      show: menuItem.meta?.hidden ?? true,
+    }
+
+    // 如果存在 meta.icon，则渲染图标
+    if (menuItem.meta?.icon) {
+      // newMenuItem.icon = () => renderMenuIcon(constantRouterIcon[menuItem.meta.icon])
+      newMenuItem.icon = () => renderIconByConstant(menuItem.meta?.icon)
+    }
+
+    if (Array.isArray(menuItem.children)) {
+      // 如果子菜单只有一个，直接将子菜单的 name 赋值给当前菜单的 key
+      if (menuItem.children.length === 1) {
+        newMenuItem.key = menuItem.children[0].name as string
+      }
+      // 如果子菜单有多个，就重新转换
+      if (menuItem.children.length > 1) {
+        newMenuItem.children = transformMenus(menuItem.children)
+      }
+    }
+
+    return newMenuItem
+  })
 }
 
 /**
@@ -139,9 +157,9 @@ export function generateRoutes(routerMap: Login.Menus, parent?: any): RouteRecor
       component: item.component,
       // meta: 页面标题, 菜单图标, 页面权限(供指令权限用，可去掉)
       meta: {
-        ...item.meta,
-        label: item.meta.title,
+        title: item.meta.title,
         icon: item.meta.icon || null,
+        orderNo: item.meta.orderNo,
       },
     }
 

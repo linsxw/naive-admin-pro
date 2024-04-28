@@ -35,6 +35,7 @@ declare namespace Login {
       icon: string
       noCache: boolean
       link: string | null
+      orderNo: number
     }
     children: Menu[]
   }
