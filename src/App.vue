@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import type { GlobalThemeOverrides } from 'naive-ui'
+import { dateZhCN, zhCN } from 'naive-ui'
 import { Application } from '@/components/Application'
 import { useLayoutStore } from '@/store/modules/layout.ts'
 
@@ -41,7 +42,7 @@ layoutStore.initAppearance()
 </script>
 
 <template>
-  <n-config-provider :theme-overrides="themeOverride" :theme="layoutStore.naiveDarkTheme">
+  <n-config-provider :locale="zhCN" :date-locale="dateZhCN" :theme-overrides="themeOverride" :theme="layoutStore.naiveDarkTheme">
     <Application>
       <RouterView />
     </Application>
