@@ -12,17 +12,13 @@ const routes: RouteRecordRaw[] = [
         path: 'workplace',
         name: 'DashboardWorkplace',
         component: () => import('@/views/dashboard/workplace/index.vue'),
-        meta: {
-          title: '工作台',
-        },
+        meta: { title: '工作台', affix: true },
       },
       {
         path: 'analysis',
         name: 'DashboardAnalysis',
         component: () => import('@/views/dashboard/analysis/index.vue'),
-        meta: {
-          title: '分析页',
-        },
+        meta: { title: '分析页' },
       },
     ],
   },

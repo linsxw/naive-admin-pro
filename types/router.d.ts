@@ -14,5 +14,7 @@ declare module 'vue-router' {
     hidden?: boolean
     /** 是否缓存 */
     keepAlive?: boolean
+    /** 固定标签栏 */
+    affix?: boolean
   }
 }

@@ -9,6 +9,7 @@ const props = defineProps({
 })
 
 const route = useRoute()
+const router = useRouter()
 const tabViewStore = useTabViewStore()
 const { isMobile } = useLayoutStoreRefs()
 const activeKey = ref<string>(route.fullPath)
@@ -30,6 +31,28 @@ tabViewStore.initTabList(cacheTabList)
 
 function getSimpleRoute(route: RouteItem): RouteItem {
   return JSON.parse(JSON.stringify(route))
+}
+
+function onRemoveTabView(item: RouteItem): void {
+  const index = tabViewStore.tabList.findIndex(tab => tab.fullPath === item.fullPath)
+  if (index >= 0) {
+    // 从标签页列表中移除要移除的标签页
+    tabViewStore.removeTab(item)
+
+    // 更新活动标签页
+    if (tabViewStore.tabList.length > 0) {
+      let newIndex = index
+      if (index === tabViewStore.tabList.length) {
+        // 如果移除的是最后一个标签页，则更新为前一个标签页
+        newIndex--
+      }
+      const newActiveKey = tabViewStore.tabList[newIndex].fullPath
+      activeKey.value = newActiveKey
+
+      // 立即将路由跳转到新的活动标签页
+      router.push(newActiveKey)
+    }
+  }
 }
 
 const computedWidth = computed(() => {
@@ -70,7 +93,7 @@ watch(
         <div class="tab-view-content-wrapper">
           <n-el v-for="(item, index) in tabViewStore.tabList" :key="index" tag="div" class="tab-view-item" :class="{ 'active-tab-view': item.fullPath === activeKey }" @click="$router.push(item.fullPath)">
             <span>{{ item.meta.title }}</span>
-            <n-icon :size="14" class="ml-2">
+            <n-icon v-if="!item.meta.affix" :size="14" class="ml-2" @click.stop="onRemoveTabView(item)">
               <CloseOutlined />
             </n-icon>
           </n-el>
