@@ -10,10 +10,8 @@ const { getSidebarTheme } = useLayoutStoreRefs()
 
 const { menus } = useAsyncRouteStoreRefs()
 const router = useRouter()
-
-// function renderIcon(icon: Component) {
-//   return () => h(NIcon, null, { default: () => h(icon) })
-// }
+const route = useRoute()
+const openKeys = ref(route.matched.map(item => item.name as string))
 
 const defaultExpandedKeys = computed(() => {
   // 获取当前打开页面的路由的name
@@ -26,12 +24,16 @@ const defaultValue = computed(() => {
 })
 
 function handleUpdateExpandedKeys(keys: string[]) {
-  console.log(keys)
+  openKeys.value = keys
 }
 
 function onUpdateMenuValue(value: string) {
   router.push({ name: value })
 }
+
+router.afterEach((to) => {
+  openKeys.value = to.matched.map(item => item.name as string)
+})
 
 onMounted(() => {
   console.log(router.getRoutes())
@@ -40,6 +42,7 @@ onMounted(() => {
 
 <template>
   <n-menu
+    accordion
     :collapsed="collapsed"
     :inverted="getSidebarTheme"
     :options="menus"
@@ -47,7 +50,9 @@ onMounted(() => {
     :indent="18"
     :show-trigger="false"
     :default-value="defaultValue"
+    :value="defaultValue"
     :collapsed-icon-size="22"
+    :expanded-keys="openKeys"
     :default-expanded-keys="defaultExpandedKeys"
     :on-update:value="onUpdateMenuValue"
     @update:expanded-keys="handleUpdateExpandedKeys"
