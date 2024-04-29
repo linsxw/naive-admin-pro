@@ -85,8 +85,8 @@ onMounted(() => {
 
       <n-layout-content class="layout-content layout-default-background">
         <div class="layout-content-main">
+          <TabView :collapsed="collapsed" />
           <div class="main-view main-view-fix">
-            <TabView :collapsed="collapsed" />
             <MainView />
           </div>
         </div>
@@ -119,7 +119,7 @@ onMounted(() => {
 
   .layout-content {
     flex: auto;
-    min-height: 100vh;
+    height: 100vh;
   }
 
   .n-layout-header.n-layout-header--absolute-positioned {
@@ -130,6 +130,7 @@ onMounted(() => {
 .layout-content-main {
   position: relative;
   padding-top: 64px;
+  height: 100%;
 }
 
 .layout-content-main-fix {
@@ -138,5 +139,6 @@ onMounted(() => {
 
 .main-view-fix {
   padding-top: 40px;
+  height: 100%;
 }
 </style>
