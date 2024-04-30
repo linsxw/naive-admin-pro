@@ -1,14 +1,11 @@
 import type { ConfigProviderProps } from 'naive-ui'
-import {
-  createDiscreteApi,
-} from 'naive-ui'
+import { createDiscreteApi } from 'naive-ui'
+import { naiveThemeConfig } from '@/config/naive-config.ts'
 
 export function setupNaiveDiscreteApi() {
   const configProviderPropsRef = computed<ConfigProviderProps>(() => ({
     themeOverrides: {
-      common: {
-        primaryColor: '#42b8f1',
-      },
+      ...naiveThemeConfig,
     },
     LoadingBar: {
       colorLoading: '#42b8f1',
