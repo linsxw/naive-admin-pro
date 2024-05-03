@@ -31,3 +31,5 @@ export const naiveThemeConfig: GlobalThemeOverrides = {
     fontSize: '14px',
   },
 }
+
+export const primaryColor = naiveThemeConfig.common?.primaryColor

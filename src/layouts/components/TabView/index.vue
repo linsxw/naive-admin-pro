@@ -3,7 +3,7 @@ import { CloseOutlined, LeftOutlined, RightOutlined } from '@vicons/antd'
 import type { ITabViewStore, RouteItem } from '@/store/modules/tabView.ts'
 import { TAB_VIEW_STORE, useTabViewStore } from '@/store/modules/tabView.ts'
 import { useLayoutStoreRefs } from '@/store/modules/layout.ts'
-import { naiveThemeConfig } from '@/config/naive-config.ts'
+import { primaryColor } from '@/config/naive-config.ts'
 
 const props = defineProps({
   collapsed: Boolean,
@@ -163,7 +163,7 @@ watch(
         }
       }
       .active-tab-view {
-        color: v-bind('naiveThemeConfig.common?.primaryColor');
+        color: v-bind('primaryColor');
       }
     }
   }
