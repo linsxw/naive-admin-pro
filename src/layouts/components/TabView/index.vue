@@ -3,7 +3,6 @@ import { CloseOutlined, LeftOutlined, RightOutlined } from '@vicons/antd'
 import type { ITabViewStore, RouteItem } from '@/store/modules/tabView.ts'
 import { TAB_VIEW_STORE, useTabViewStore } from '@/store/modules/tabView.ts'
 import { useLayoutStoreRefs } from '@/store/modules/layout.ts'
-import { primaryColor } from '@/config/naive-config.ts'
 
 const props = defineProps({
   collapsed: Boolean,
@@ -12,7 +11,7 @@ const props = defineProps({
 const route = useRoute()
 const router = useRouter()
 const tabViewStore = useTabViewStore()
-const { isMobile } = useLayoutStoreRefs()
+const { isMobile, themeColorConfig, sidebarConfig } = useLayoutStoreRefs()
 const activeKey = ref<string>(route.fullPath)
 
 let cacheTabList: RouteItem[] = []
@@ -56,12 +55,17 @@ function onRemoveTabView(item: RouteItem): void {
   }
 }
 
+const primaryColor = computed(() => {
+  const { primaryColor } = unref(themeColorConfig)
+  return primaryColor
+})
+
 const computedWidth = computed(() => {
   if (isMobile.value) {
     return '100%'
   }
   else {
-    return `calc(100% - ${props.collapsed ? '64px' : '270px'})`
+    return `calc(100% - ${props.collapsed ? '64px' : `${sidebarConfig.value.width}px`})`
   }
 })
 
@@ -83,7 +87,7 @@ watch(
 </script>
 
 <template>
-  <n-el tag="div" class="tab-view tab-view-fixed" :style="{ width: computedWidth }">
+  <n-el tag="div" class="tab-view tab-view-fixed w-full" :style="{ width: computedWidth }">
     <div class="tab-view-left">
       <n-icon size="18">
         <LeftOutlined />

@@ -1,12 +1,18 @@
 <script setup lang="ts">
 import { MoonOutline, SunnyOutline } from '@vicons/ionicons5'
-import { useLayoutStoreRefs } from '@/store/modules/layout.ts'
+import { useLayoutStore, useLayoutStoreRefs } from '@/store/modules/layout.ts'
 
 const active = defineModel({ type: Boolean, default: false })
 
-const { appearance } = useLayoutStoreRefs()
+const { appearance, crumbsConfig, sidebarConfig, pageAnimateType, themeColorConfig } = useLayoutStoreRefs()
+const layoutStore = useLayoutStore()
+const colorPickerSwatches = [
+  '#FFFFFF',
+  '#18A058',
+  '#2080F0',
+  '#F0A020',
+]
 
-const configSetting = ref()
 const animateOptions = [
   {
     label: '无',
@@ -46,14 +52,80 @@ const animateOptions = [
           </n-tab-pane>
         </n-tabs>
       </div>
-
-      <n-divider>其他配置</n-divider>
       <div class="drawer-config-item">
         <div class="drawer-config-item-title">
-          固定菜单
+          深色侧边栏
         </div>
         <div class="drawer-config-item-action">
-          <n-switch v-model="configSetting" />
+          <n-switch v-model:value="sidebarConfig.theme" checked-value="dark" unchecked-value="light" />
+        </div>
+      </div>
+
+      <n-divider>主题配置</n-divider>
+      <div class="drawer-config-item">
+        <div class="drawer-config-item-title">
+          主色
+        </div>
+        <div class="drawer-config-item-action">
+          <n-color-picker v-model:value="themeColorConfig.primaryColor" :swatches="colorPickerSwatches" />
+        </div>
+      </div>
+      <div class="drawer-config-item">
+        <div class="drawer-config-item-title">
+          信息色
+        </div>
+        <div class="drawer-config-item-action">
+          <n-color-picker v-model:value="themeColorConfig.infoColor" :swatches="colorPickerSwatches" />
+        </div>
+      </div>
+      <div class="drawer-config-item">
+        <div class="drawer-config-item-title">
+          成功色
+        </div>
+        <div class="drawer-config-item-action">
+          <n-color-picker v-model:value="themeColorConfig.successColor" :swatches="colorPickerSwatches" />
+        </div>
+      </div>
+      <div class="drawer-config-item">
+        <div class="drawer-config-item-title">
+          警告色
+        </div>
+        <div class="drawer-config-item-action">
+          <n-color-picker v-model:value="themeColorConfig.warningColor" :swatches="colorPickerSwatches" />
+        </div>
+      </div>
+      <div class="drawer-config-item">
+        <div class="drawer-config-item-title">
+          错误色
+        </div>
+        <div class="drawer-config-item-action">
+          <n-color-picker v-model:value="themeColorConfig.errorColor" :swatches="colorPickerSwatches" />
+        </div>
+      </div>
+
+      <n-divider>页面功能</n-divider>
+      <div class="drawer-config-item">
+        <div class="drawer-config-item-title">
+          侧边栏宽度
+        </div>
+        <div class="drawer-config-item-action">
+          <n-input-number v-model:value="sidebarConfig.width" />
+        </div>
+      </div>
+      <div class="drawer-config-item">
+        <div class="drawer-config-item-title">
+          显示面包屑
+        </div>
+        <div class="drawer-config-item-action">
+          <n-switch v-model:value="crumbsConfig.show" />
+        </div>
+      </div>
+      <div class="drawer-config-item">
+        <div class="drawer-config-item-title">
+          显示面包屑图标
+        </div>
+        <div class="drawer-config-item-action">
+          <n-switch v-model:value="crumbsConfig.showIcon" />
         </div>
       </div>
 
@@ -61,10 +133,20 @@ const animateOptions = [
         <div class="drawer-config-item-title">
           动画类型
         </div>
-        <div class="drawer-config-item-select">
-          <n-select v-model:value="configSetting" :options="animateOptions" placeholder="选择动画类型" />
+        <div class="drawer-config-item-action">
+          <n-select v-model:value="pageAnimateType" :options="animateOptions" placeholder="选择动画类型" />
         </div>
       </div>
+      <template #footer>
+        <div class="w-full flex justify-between">
+          <n-button secondary type="primary" @click="layoutStore.reloadLayoutConfig()">
+            重载配置
+          </n-button>
+          <n-button type="primary" @click="layoutStore.copyLayoutConfig()">
+            复制配置
+          </n-button>
+        </div>
+      </template>
     </n-drawer-content>
   </n-drawer>
 </template>
@@ -83,11 +165,9 @@ const animateOptions = [
   }
 
   &-action {
-    flex: 0 0 auto;
-  }
-
-  &-select {
     flex: 1;
+    display: flex;
+    justify-content: flex-end;
   }
 }
 </style>

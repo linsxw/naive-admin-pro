@@ -3,7 +3,7 @@ import type { FormInst } from 'naive-ui'
 import { useMessage } from 'naive-ui'
 import { CloudTwotone, LockTwotone, SafetyCertificateOutlined, UserOutlined } from '@vicons/antd'
 import { useUserStore } from '@/store/modules/user.ts'
-import { primaryColor } from '@/config/naive-config.ts'
+import { primaryColor } from '@/config/naiveUiConfig.ts'
 
 const router = useRouter()
 const route = useRoute()

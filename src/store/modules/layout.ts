@@ -1,31 +1,64 @@
 import { acceptHMRUpdate, defineStore, storeToRefs } from 'pinia'
 import { darkTheme } from 'naive-ui'
 import type { BuiltInGlobalTheme } from 'naive-ui/es/themes/interface'
-import { AppearanceEnum, SidebarThemeEnum } from '@/store/constant'
+import type { SidebarThemeEnum } from '@/store/constant'
+import { AppearanceEnum } from '@/store/constant'
+import projectConfig from '@/config/projectConfig.ts'
 
 export const LAYOUT_STORE = 'app-layout-store'
+const {
+  navMode,
+  headerConfig,
+  tabViewConfig,
+  crumbsConfig,
+  isPageAnimate,
+  pageAnimateType,
+  sidebarConfig,
+  themeColorConfig,
+} = projectConfig
 
 interface ILayoutStore {
-  // 是否收起菜单
-  collapsed: boolean
   // 导航菜单模式
-  navMode: 'vertical' | 'horizontal'
-  // 头部固定
-  headerFixed: boolean
-  // 头部主题
-  headerTheme: 'light' | 'dark'
-  // 页签显示
-  tabsShow: boolean
-  // 页签固定
-  tabsFixed: boolean
+  navMode: string
+  // 头部设置
+  headerConfig: {
+    // 是否固定头部
+    fixed: boolean
+  }
+  // 标签页设置
+  tabViewConfig: {
+    // 是否显示
+    show: boolean
+    // 是否固定
+    fixed: boolean
+  }
+  sidebarConfig: {
+    // 侧边栏宽度
+    width: number
+    // 侧边栏主题
+    theme: SidebarThemeEnum
+  }
+  // 面包屑配置
+  crumbsConfig: {
+    // 是否显示
+    show: boolean
+    // 显示图标
+    showIcon: boolean
+  }
+  // 主题颜色配置
+  themeColorConfig: {
+    primaryColor: string
+    infoColor: string
+    successColor: string
+    warningColor: string
+    errorColor: string
+  }
   // 是否移动端
   isMobile: boolean
   // 页面是否开启切换动画
-  pageAnimate: boolean
+  isPageAnimate: boolean
   // 切换动画类型
   pageAnimateType: string
-  // 侧边栏主题
-  sidebarTheme: SidebarThemeEnum
   // 外观
   appearance: AppearanceEnum
   // 是否是暗黑模式
@@ -37,16 +70,15 @@ interface ILayoutStore {
 const useLayoutStore = defineStore(LAYOUT_STORE, {
   state(): ILayoutStore {
     return {
-      collapsed: false,
-      navMode: 'vertical',
-      headerFixed: true,
-      headerTheme: 'light',
-      tabsShow: true,
-      tabsFixed: true,
+      navMode,
+      headerConfig,
+      tabViewConfig,
+      sidebarConfig,
+      crumbsConfig,
+      themeColorConfig,
       isMobile: false,
-      pageAnimate: true,
-      pageAnimateType: 'fade',
-      sidebarTheme: SidebarThemeEnum.Dark,
+      isPageAnimate,
+      pageAnimateType,
       appearance: AppearanceEnum.Auto,
       appearanceTheme: false,
       naiveDarkTheme: null,
@@ -57,10 +89,10 @@ const useLayoutStore = defineStore(LAYOUT_STORE, {
       return this.isMobile
     },
     getSidebarTheme(): boolean {
-      return this.sidebarTheme === 'dark' || this.appearanceTheme
+      return this.sidebarConfig.theme === 'dark' || this.appearanceTheme
     },
     getHeaderDarkTheme(): boolean {
-      return this.headerTheme === 'dark' || this.appearanceTheme
+      return false
     },
   },
   actions: {
@@ -109,6 +141,19 @@ const useLayoutStore = defineStore(LAYOUT_STORE, {
       }, {
         immediate: true,
       })
+    },
+    /**
+     * 重载配置
+     */
+    reloadLayoutConfig() {
+      localStorage.removeItem(LAYOUT_STORE)
+      window.location.reload()
+    },
+    /**
+     * 复制配置
+     */
+    copyLayoutConfig() {
+      window.$message.success('待开发')
     },
   },
   persist: true,

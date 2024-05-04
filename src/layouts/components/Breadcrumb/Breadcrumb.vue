@@ -1,18 +1,14 @@
 <script setup lang="ts">
-const router = useRouter()
+import { renderIconByConstant } from '@/router/icons.ts'
+import { useLayoutStoreRefs } from '@/store/modules/layout.ts'
 
-function getTitle(title?: string | Record<string, string>) {
-  if (typeof title === 'string') {
-    return title
-  }
-  // 暂时设置中文
-  return title && title.zh_CN
-}
+const router = useRouter()
+const { crumbsConfig } = useLayoutStoreRefs()
 
 const breadcrumb = computed(() => router.currentRoute.value.matched.map(item => ({
   name: item.name,
   path: item.path,
-  title: getTitle(item.meta.title),
+  title: item.meta.title,
   icon: item.meta.icon,
 })).filter(item => item.title))
 </script>
@@ -20,6 +16,7 @@ const breadcrumb = computed(() => router.currentRoute.value.matched.map(item => 
 <template>
   <n-breadcrumb>
     <n-breadcrumb-item v-for="item in breadcrumb" :key="item.name">
+      <component :is="renderIconByConstant(item.icon) " v-if="crumbsConfig.showIcon" />
       {{ item.title }}
     </n-breadcrumb-item>
   </n-breadcrumb>

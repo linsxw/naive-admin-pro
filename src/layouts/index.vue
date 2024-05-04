@@ -6,8 +6,9 @@ import { MainView } from './components/Main'
 import { TabView } from './components/TabView'
 import { useLayoutStore, useLayoutStoreRefs } from '@/store/modules/layout.ts'
 
-const { collapsed, getHeaderDarkTheme, getSidebarTheme } = useLayoutStoreRefs()
+const { getHeaderDarkTheme, getSidebarTheme, sidebarConfig } = useLayoutStoreRefs()
 const layoutStore = useLayoutStore()
+const collapsed = ref(false)
 
 /** 是否是移动端 */
 const isMobile = computed<boolean>({
@@ -47,7 +48,7 @@ onMounted(() => {
       :collapsed="collapsed"
       collapse-mode="width"
       :collapsed-width="64"
-      :width="270"
+      :width="sidebarConfig.width"
       :native-scrollbar="false"
       :inverted="getSidebarTheme"
       class="layout-sider"

@@ -4,14 +4,13 @@ import { FullscreenOutlined, GithubOutlined, SettingOutlined } from '@vicons/ant
 import { Breadcrumb } from '../Breadcrumb'
 import ProjectConfig from './projectConfig.vue'
 import { useUserStoreRefs } from '@/store/modules/user.ts'
+import { useLayoutStoreRefs } from '@/store/modules/layout.ts'
 
-defineProps({
-  collapsed: Boolean,
-})
+const collapsed = defineModel<boolean>('collapsed')
 
-const emits = defineEmits(['update:collapsed'])
 const activeProjectConfig = ref(false)
 const { username, avatar } = useUserStoreRefs()
+const { crumbsConfig } = useLayoutStoreRefs()
 
 const avatarOptions = [
   {
@@ -30,11 +29,11 @@ const avatarOptions = [
     <div class="layout-header-left">
       <n-flex :size="12" align="center">
         <!-- 菜单收起 -->
-        <n-icon :size="22" class="layout-header-trigger" @click="() => emits('update:collapsed', !collapsed)">
+        <n-icon :size="22" class="layout-header-trigger" @click="collapsed = !collapsed">
           <Menu />
         </n-icon>
         <!-- 面包屑 -->
-        <Breadcrumb />
+        <Breadcrumb v-if="crumbsConfig.show" />
       </n-flex>
     </div>
     <div class="layout-header-right">
