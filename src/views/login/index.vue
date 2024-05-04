@@ -3,10 +3,11 @@ import type { FormInst } from 'naive-ui'
 import { useMessage } from 'naive-ui'
 import { CloudTwotone, LockTwotone, SafetyCertificateOutlined, UserOutlined } from '@vicons/antd'
 import { useUserStore } from '@/store/modules/user.ts'
-import { primaryColor } from '@/config/naiveUiConfig.ts'
+import { useLayoutStoreRefs } from '@/store/modules/layout.ts'
 
 const router = useRouter()
 const route = useRoute()
+const { themeColorConfig } = useLayoutStoreRefs()
 const message = useMessage()
 const formData = ref<Login.LoginParam>({
   username: 'admin',
@@ -65,7 +66,7 @@ function handleSubmit(e: MouseEvent) {
     <div class="h-screen flex flex-col justify-evenly md:flex-row md:items-center">
       <div class="h-full flex flex-1 flex-col">
         <n-carousel>
-          <div class="h-full flex flex-col items-center justify-center pb-5 md:pb-0" :style="{ backgroundColor: primaryColor }">
+          <div class="h-full flex flex-col items-center justify-center pb-5 md:pb-0" :style="{ backgroundColor: themeColorConfig.primaryColor }">
             <img class="h-[400px] w-[500px]" src="@/assets/image/banner.png" alt="banner">
             <n-el tag="div" class="mb-4 pt-[50px] text-[26px] text-white font-bold">
               极致的用户体验
