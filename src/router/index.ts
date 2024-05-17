@@ -2,6 +2,7 @@ import type { App } from 'vue'
 import type { RouteRecordRaw } from 'vue-router'
 import { createRouter, createWebHashHistory } from 'vue-router'
 import { setupRouterGuard } from '@/router/guard'
+import { Layout } from '@/router/constants.ts'
 
 const fixedModules = import.meta.glob('./modules/**/*.ts', { eager: true })
 // const isHash = import.meta.env.VITE_USE_HASH === 'true'
@@ -11,6 +12,16 @@ const defaultRouterList: Array<RouteRecordRaw> = [
   {
     path: '/',
     redirect: '/dashboard',
+    component: Layout,
+    children: [
+      // 个人中心
+      {
+        path: '/profile',
+        name: 'Profile',
+        component: () => import('@/views/profile/index.vue'),
+        meta: { title: '个人中心' },
+      },
+    ],
   },
   // 登录
   {

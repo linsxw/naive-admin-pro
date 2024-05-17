@@ -11,17 +11,29 @@ const collapsed = defineModel<boolean>('collapsed')
 const activeProjectConfig = ref(false)
 const { username, avatar } = useUserStoreRefs()
 const { crumbsConfig } = useLayoutStoreRefs()
+const router = useRouter()
 
 const avatarOptions = [
   {
     label: '个人设置',
-    key: 1,
+    key: 'setting',
   },
   {
     label: '退出登录',
-    key: 2,
+    key: 'logout',
   },
 ]
+
+function onDropdownSelect(key: string) {
+  switch (key) {
+    case 'setting':
+      router.push('/profile')
+      break
+    case 'logout':
+      console.log('退出登录')
+      break
+  }
+}
 </script>
 
 <template>
@@ -62,7 +74,7 @@ const avatarOptions = [
             </n-icon>
           </template>
         </n-button>
-        <n-dropdown :options="avatarOptions">
+        <n-dropdown :options="avatarOptions" @select="onDropdownSelect">
           <div class="flex cursor-pointer items-center pl-4 space-x-1">
             <n-avatar round :size="35" :src="avatar" />
             <span>{{ username }}</span>
