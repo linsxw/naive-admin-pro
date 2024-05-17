@@ -45,6 +45,13 @@ export const useTabViewStore = defineStore(TAB_VIEW_STORE, {
     },
 
     /**
+     * 关闭其他tab
+     */
+    closeOtherTabs(route: RouteItem) {
+      this.tabList = this.tabList.filter(item => item.meta.affix || item.fullPath === route.fullPath)
+    },
+
+    /**
      * 清空tab
      */
     clearTab() {

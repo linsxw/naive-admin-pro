@@ -72,6 +72,52 @@ const computedWidth = computed(() => {
 // 白名单
 const whiteList: string[] = []
 
+// 右键菜单
+const dropdownX = ref(0)
+const dropdownY = ref(0)
+const showDropdown = ref(false)
+const currentTab = ref<RouteItem | null>(null)
+const options = [
+  { label: '关闭当前标签页', key: 'close' },
+  { label: '关闭其他标签页', key: 'close-others' },
+  { label: '关闭所有标签页', key: 'close-all' },
+]
+
+function onClickOutside() {
+  showDropdown.value = false
+}
+
+async function handleSelect(key: string) {
+  switch (key) {
+    case 'close':
+      if (currentTab.value && !currentTab.value.meta.affix) {
+        onRemoveTabView(currentTab.value)
+      }
+      break
+    case 'close-others':
+      tabViewStore.closeOtherTabs(route)
+      break
+    case 'close-all':
+      tabViewStore.clearTab()
+      await router.replace('/')
+      // 添加一个
+      tabViewStore.addTab(getSimpleRoute(route))
+      break
+  }
+  showDropdown.value = false
+}
+
+function handleContextMenu(e: MouseEvent, item: RouteItem) {
+  e.preventDefault()
+  currentTab.value = item
+  showDropdown.value = false
+  nextTick(() => {
+    showDropdown.value = true
+    dropdownX.value = e.clientX
+    dropdownY.value = e.clientY
+  })
+}
+
 watch(
   () => route.fullPath,
   (to) => {
@@ -96,7 +142,14 @@ watch(
     <div class="tab-view-content">
       <n-scrollbar x-scrollable>
         <div class="tab-view-content-wrapper">
-          <n-el v-for="(item, index) in tabViewStore.tabList" :key="index" tag="div" class="tab-view-item" :class="{ 'active-tab-view': item.fullPath === activeKey }" @click="$router.push(item.fullPath)">
+          <n-el
+            v-for="(item, index) in tabViewStore.tabList"
+            :key="index" tag="div"
+            class="tab-view-item"
+            :class="{ 'active-tab-view': item.fullPath === activeKey }"
+            @click="$router.push(item.fullPath)"
+            @contextmenu="handleContextMenu($event, item)"
+          >
             <span>{{ item.meta.title }}</span>
             <div v-if="!item.meta.affix" class="close-icon ml-2">
               <n-icon :size="14" @click.stop="onRemoveTabView(item)">
@@ -112,6 +165,17 @@ watch(
         <RightOutlined />
       </n-icon>
     </div>
+
+    <n-dropdown
+      placement="bottom-start"
+      trigger="manual"
+      :x="dropdownX"
+      :y="dropdownY"
+      :options="options"
+      :show="showDropdown"
+      :on-clickoutside="onClickOutside"
+      @select="handleSelect"
+    />
   </n-el>
 </template>
 
