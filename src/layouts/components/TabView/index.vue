@@ -30,7 +30,8 @@ catch {
 tabViewStore.initTabList(cacheTabList)
 
 function getSimpleRoute(route: RouteItem): RouteItem {
-  return JSON.parse(JSON.stringify(route))
+  const { fullPath, hash, meta, name, params, path, query } = route
+  return { fullPath, hash, meta, name, params, path, query } as RouteItem
 }
 
 function onRemoveTabView(item: RouteItem): void {
