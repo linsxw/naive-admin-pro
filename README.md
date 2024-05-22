@@ -22,6 +22,11 @@ Naive Admin Pro Building...
 - TypeScript：全面采用 TypeScript 编写，提供更好的类型支持。
 - 动态路由：支持动态路由配置，无需手动配置路由。
 
+## 预览
+- [naive-admin-pro](https://naive-admin-pro.netlify.app)
+
+账号：admin，密码：123456（随意）
+
 ## 使用
 
 ```bash
