@@ -25,7 +25,7 @@ Naive Admin Pro Building...
 ## 预览
 - [naive-admin-pro](https://naive-admin-pro.netlify.app)
 
-账号：admin，密码：123456（随意）
+账号：admin，密码：123456
 
 ## 使用
 
