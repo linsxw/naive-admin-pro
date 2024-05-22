@@ -11,7 +11,7 @@ const { themeColorConfig } = useLayoutStoreRefs()
 const message = useMessage()
 const formData = ref<Login.LoginParam>({
   username: 'admin',
-  password: 'admin123',
+  password: '123456',
   code: '12345',
 })
 
@@ -47,7 +47,6 @@ function handleSubmit(e: MouseEvent) {
       message.loading('登陆中...')
       userStore.login(formData.value).then(() => {
         message.destroyAll()
-        loading.value = false
         message.create('登录成功，即将进入系统', {
           type: 'success',
           duration: 1000,
@@ -55,6 +54,8 @@ function handleSubmit(e: MouseEvent) {
             router.push(redirect.value as string)
           },
         })
+      }).finally(() => {
+        loading.value = false
       })
     }
   })

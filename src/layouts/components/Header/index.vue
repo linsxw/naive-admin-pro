@@ -3,13 +3,14 @@ import { Menu } from '@vicons/ionicons5'
 import { FullscreenOutlined, GithubOutlined, SettingOutlined } from '@vicons/antd'
 import { Breadcrumb } from '../Breadcrumb'
 import ProjectConfig from './projectConfig.vue'
-import { useUserStoreRefs } from '@/store/modules/user.ts'
+import { useUserStore, useUserStoreRefs } from '@/store/modules/user.ts'
 import { useLayoutStoreRefs } from '@/store/modules/layout.ts'
 
 const collapsed = defineModel<boolean>('collapsed')
 
 const activeProjectConfig = ref(false)
 const { username, avatar } = useUserStoreRefs()
+const userStore = useUserStore()
 const { crumbsConfig } = useLayoutStoreRefs()
 const router = useRouter()
 
@@ -29,9 +30,14 @@ function onDropdownSelect(key: string) {
     case 'setting':
       router.push('/profile')
       break
-    case 'logout':
-      console.log('退出登录')
+    case 'logout': {
+      userStore.logout()
+      window.$message.success('退出登录成功')
+      setTimeout(() => {
+        window.location.reload()
+      }, 500)
       break
+    }
   }
 }
 </script>

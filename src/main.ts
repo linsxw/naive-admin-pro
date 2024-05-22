@@ -8,7 +8,7 @@ import 'uno.css'
 import '@/styles/scss/index.scss'
 import { setupStore } from './store'
 import { setupRouter } from './router'
-import { setupNaiveDiscreteApi, setupProdMockServer } from '@/plugins'
+import { setupNaiveDiscreteApi } from '@/plugins'
 
 function bootstrap() {
   const app = createApp(App)
@@ -18,9 +18,6 @@ function bootstrap() {
 
   // 配置NaiveUI 全局API
   setupNaiveDiscreteApi()
-
-  // 配置mock
-  setupProdMockServer()
 
   // 配置路由
   setupRouter(app)

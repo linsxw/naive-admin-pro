@@ -5,14 +5,14 @@ import { useHttp } from '@/utils/http'
  * @param param
  */
 export function login(param: Login.LoginParam) {
-  return useHttp.Post<Login.LoginResult>('/login', { params: param })
+  return useHttp.Post<Login.LoginResult>('/login', param)
 }
 
 /**
  * 获取登录用户信息
  */
 export function getUserInfo() {
-  return useHttp.Get<Login.UserInfo>('/getInfo')
+  return useHttp.Get<Login.UserInfo>('/getProfile')
 }
 
 /**

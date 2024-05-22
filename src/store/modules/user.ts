@@ -56,6 +56,14 @@ export const useUserStore = defineStore(USER_STORE, {
       this.setRoles(roles)
       this.setPermissions(permissions)
     },
+    // 登出
+    logout() {
+      this.setToken('')
+      this.setUsername('')
+      this.setAvatar('')
+      this.setRoles([])
+      this.setPermissions([])
+    },
   },
   persist: {
     paths: ['token'],

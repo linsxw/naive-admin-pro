@@ -7,7 +7,6 @@ import AutoImport from 'unplugin-auto-import/vite'
 import Components from 'unplugin-vue-components/vite'
 import VueMacros from 'unplugin-vue-macros/vite'
 import { NaiveUiResolver } from 'unplugin-vue-components/resolvers'
-import { viteMockServe } from 'vite-plugin-mock'
 import ViteSvgLoader from 'vite-svg-loader'
 import progress from 'vite-plugin-progress'
 import { visualizer } from 'rollup-plugin-visualizer'
@@ -59,12 +58,6 @@ export default ({ mode }: ConfigEnv) => {
 
       // svg
       ViteSvgLoader(),
-
-      // mock
-      viteMockServe({
-        mockPath: 'mock',
-        enable: true,
-      }),
 
       // vue 调试工具
       // VueDevTools(),
