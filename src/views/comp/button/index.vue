@@ -76,7 +76,7 @@ import { CashOutline as CashIcon, TrainOutline as TrainIcon } from '@vicons/ioni
         <n-card>
           <h3>次要按钮</h3>
           <n-space>
-            <n-button strong secondary>
+            <n-button secondary strong>
               Default
             </n-button>
             <n-button strong secondary type="tertiary">
