@@ -19,7 +19,7 @@ const projectConfig = {
     fixed: true,
   },
   sidebarConfig: {
-    width: 220,
+    width: 240,
     theme: SidebarThemeEnum.Dark,
   },
   // 面包屑
