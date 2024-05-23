@@ -30,6 +30,21 @@ const defaultRouterList: Array<RouteRecordRaw> = [
     component: () => import('@/views/login/index.vue'),
     meta: { title: '登录' },
   },
+  // 重定向
+  {
+    path: '/redirect',
+    name: 'Redirect',
+    component: Layout,
+    meta: { title: 'Redirect' },
+    children: [
+      {
+        path: '/redirect/:path(.*)',
+        name: 'Redirect',
+        component: () => import('@/views/redirect/index.vue'),
+        meta: { title: 'Redirect' },
+      },
+    ],
+  },
 ]
 
 export const fixedRouterList: Array<RouteRecordRaw> = mapModuleRouterList(fixedModules)
