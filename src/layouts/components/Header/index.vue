@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { FullscreenOutlined, GithubOutlined, MenuOutlined, ReloadOutlined, SettingOutlined } from '@vicons/antd'
+import { FullscreenExitOutlined, FullscreenOutlined, GithubOutlined, MenuOutlined, ReloadOutlined, SettingOutlined } from '@vicons/antd'
 import { Breadcrumb } from '../Breadcrumb'
 import ProjectConfig from './projectConfig.vue'
 import { useUserStore, useUserStoreRefs } from '@/store/modules/user.ts'
@@ -12,6 +12,7 @@ const userStore = useUserStore()
 const { crumbsConfig, headerConfig } = useLayoutStoreRefs()
 const router = useRouter()
 const route = useRoute()
+const { isFullscreen, toggle } = useFullscreen()
 
 const avatarOptions = [
   {
@@ -72,10 +73,11 @@ function reloadPage() {
     </div>
     <div class="layout-header-right">
       <n-flex :size="4">
-        <n-button quaternary class="layout-header-trigger">
+        <n-button quaternary class="layout-header-trigger" @click="toggle">
           <template #icon>
             <n-icon>
-              <FullscreenOutlined />
+              <FullscreenExitOutlined v-if="isFullscreen" />
+              <FullscreenOutlined v-else />
             </n-icon>
           </template>
         </n-button>

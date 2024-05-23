@@ -44,7 +44,7 @@ export default ({ mode }: ConfigEnv) => {
           'vue-router',
           'pinia',
           {
-            '@vueuse/core': ['useMediaQuery', 'useDark'],
+            '@vueuse/core': ['useMediaQuery', 'useDark', 'useFullscreen'],
           },
         ],
         dts: 'types/auto-imports.d.ts',
