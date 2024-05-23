@@ -18,3 +18,9 @@ export default defineComponent({
   },
 })
 </script>
+
+<template>
+  <div>
+    <n-empty />
+  </div>
+</template>

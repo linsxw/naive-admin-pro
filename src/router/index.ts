@@ -39,9 +39,9 @@ const defaultRouterList: Array<RouteRecordRaw> = [
     children: [
       {
         path: '/redirect/:path(.*)',
-        name: 'Redirect',
+        name: 'RedirectPage',
         component: () => import('@/views/redirect/index.vue'),
-        meta: { title: 'Redirect' },
+        meta: { title: 'Redirect', hidden: true },
       },
     ],
   },

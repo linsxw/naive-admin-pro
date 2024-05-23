@@ -9,6 +9,8 @@ const projectConfig = {
   headerConfig: {
     // 是否固定头部
     fixed: true,
+    // 是否显示刷新
+    showRefresh: true,
   },
   tabViewConfig: {
     // 是否显示

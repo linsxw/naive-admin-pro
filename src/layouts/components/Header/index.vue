@@ -1,18 +1,17 @@
 <script setup lang="ts">
-import { Menu } from '@vicons/ionicons5'
-import { FullscreenOutlined, GithubOutlined, SettingOutlined } from '@vicons/antd'
+import { FullscreenOutlined, GithubOutlined, MenuOutlined, ReloadOutlined, SettingOutlined } from '@vicons/antd'
 import { Breadcrumb } from '../Breadcrumb'
 import ProjectConfig from './projectConfig.vue'
 import { useUserStore, useUserStoreRefs } from '@/store/modules/user.ts'
 import { useLayoutStoreRefs } from '@/store/modules/layout.ts'
 
 const collapsed = defineModel<boolean>('collapsed')
-
 const activeProjectConfig = ref(false)
 const { username, avatar } = useUserStoreRefs()
 const userStore = useUserStore()
-const { crumbsConfig } = useLayoutStoreRefs()
+const { crumbsConfig, headerConfig } = useLayoutStoreRefs()
 const router = useRouter()
+const route = useRoute()
 
 const avatarOptions = [
   {
@@ -40,19 +39,36 @@ function onDropdownSelect(key: string) {
     }
   }
 }
+
+/** 刷新页面 */
+function reloadPage() {
+  router.push({
+    path: `/redirect${unref(route).fullPath}`,
+  })
+}
 </script>
 
 <template>
   <div class="layout-header">
     <div class="layout-header-left">
-      <n-flex :size="12" align="center">
-        <!-- 菜单收起 -->
-        <n-icon :size="22" class="layout-header-trigger" @click="collapsed = !collapsed">
-          <Menu />
-        </n-icon>
-        <!-- 面包屑 -->
-        <Breadcrumb v-if="crumbsConfig.show" />
-      </n-flex>
+      <!-- 菜单收起 -->
+      <n-button quaternary class="layout-header-trigger" @click="collapsed = !collapsed">
+        <template #icon>
+          <n-icon>
+            <MenuOutlined />
+          </n-icon>
+        </template>
+      </n-button>
+      <!-- 刷新 -->
+      <n-button v-if="headerConfig.showRefresh" quaternary class="layout-header-trigger" @click="reloadPage">
+        <template #icon>
+          <n-icon>
+            <ReloadOutlined />
+          </n-icon>
+        </template>
+      </n-button>
+      <!-- 面包屑 -->
+      <Breadcrumb v-if="crumbsConfig.show" />
     </div>
     <div class="layout-header-right">
       <n-flex :size="4">

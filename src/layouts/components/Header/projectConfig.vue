@@ -4,7 +4,7 @@ import { useLayoutStore, useLayoutStoreRefs } from '@/store/modules/layout.ts'
 
 const active = defineModel({ type: Boolean, default: false })
 
-const { appearance, crumbsConfig, sidebarConfig, pageAnimateType, themeColorConfig } = useLayoutStoreRefs()
+const { appearance, crumbsConfig, sidebarConfig, pageAnimateType, themeColorConfig, headerConfig } = useLayoutStoreRefs()
 const layoutStore = useLayoutStore()
 const colorPickerSwatches = [
   '#FFFFFF',
@@ -110,6 +110,14 @@ const animateOptions = [
         </div>
         <div class="drawer-config-item-action">
           <n-input-number v-model:value="sidebarConfig.width" />
+        </div>
+      </div>
+      <div class="drawer-config-item">
+        <div class="drawer-config-item-title">
+          显示刷新按钮
+        </div>
+        <div class="drawer-config-item-action">
+          <n-switch v-model:value="headerConfig.showRefresh" />
         </div>
       </div>
       <div class="drawer-config-item">

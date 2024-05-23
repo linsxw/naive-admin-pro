@@ -29,7 +29,7 @@ export const useTabViewStore = defineStore(TAB_VIEW_STORE, {
       if (isExist) {
         return
       }
-      if (whiteList.includes(route.fullPath)) {
+      if (whiteList.includes(route.fullPath) || route.meta.hidden) {
         return
       }
       this.tabList.push(route)

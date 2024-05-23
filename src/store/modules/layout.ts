@@ -24,6 +24,8 @@ interface ILayoutStore {
   headerConfig: {
     // 是否固定头部
     fixed: boolean
+    // 是否显示刷新
+    showRefresh: boolean
   }
   // 标签页设置
   tabViewConfig: {
