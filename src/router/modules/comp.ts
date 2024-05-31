@@ -21,6 +21,12 @@ const routes: RouteRecordRaw[] = [
         component: () => import('@/views/comp/form/index.vue'),
         meta: { title: '表单', icon: 'star' },
       },
+      {
+        path: 'table',
+        name: 'CompTable',
+        component: () => import('@/views/comp/table/index.vue'),
+        meta: { title: '表格', icon: 'star' },
+      },
     ],
   },
 ]
