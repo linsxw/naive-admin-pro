@@ -80,6 +80,13 @@ export default ({ mode }: ConfigEnv) => {
         return filename
       },
     },
+    css: {
+      preprocessorOptions: {
+        scss: {
+          api: 'modern-compiler', // 使用现代编译器 API
+        },
+      },
+    },
     build: {
       cssCodeSplit: true,
       assetsInlineLimit: 5000,
